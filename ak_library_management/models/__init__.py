@@ -4,3 +4,4 @@ from . import book
 from . import category
 from . import member
 from . import tags
+from . import library

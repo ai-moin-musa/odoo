@@ -14,7 +14,7 @@ class Member(models.Model):
     _name = "library.member"
     _description = "Library Members"
 
-    name = fields.Char(string="Name")
+    name = fields.Char(string="Name",required=True)
     email = fields.Char(string="Email ID")
     phone = fields.Char(string="Contact Number")
     membership_date = fields.Date(string="Start Date of Membership")
