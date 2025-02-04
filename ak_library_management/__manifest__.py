@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 {
-    'name': 'Ak Library Management',
+    'name': 'Library Management',
     'author': 'Aktiv Software',
     'version': '18.0.1.0.0',
     'summary': 'Manages books,books category and members at library',

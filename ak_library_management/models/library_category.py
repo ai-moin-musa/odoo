@@ -2,7 +2,7 @@
 #import models and fields from the odoo folder
 from odoo import models,fields
 
-class Category(models.Model):
+class LibraryCategory(models.Model):
     """
     	this is model for categories for books at library.
     	fields example:

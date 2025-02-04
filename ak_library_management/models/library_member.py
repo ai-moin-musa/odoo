@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from odoo import models,fields
 
-class Member(models.Model):
+class LibraryMember(models.Model):
     """
     	this is model for members at library.
     	fields example:
