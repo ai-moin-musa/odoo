@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+         <!--this form view for book, model: book in book.py -->
+        <record id="book_view_form" model="ir.ui.view">
+            <field name="name">book.form</field>
+            <field name="model">library.book</field>
+            <field name="arch" type="xml">
+                <form string="Book">
+                    <header>
+                    <field name="state" widget="statusbar" statusbar_visible="available,borrowed" options="{'clickable':'1'}"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="author"/>
+                                <field name="isbn"/>
+                                <field name="library_id"/>
+                            </group>
+                            <group >
+                                <field name="publication_date"/>
+                                <field name="category_id"/>
+                                <field name="tag_ids" widget="many2many_tags"/>
+                                <field name="description"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!--this list view for book, model: book in book.py -->
+        <record id="book_view_list" model="ir.ui.view">
+            <field name="name">book.list</field>
+            <field name="model">library.book</field>
+            <field name="arch" type="xml">
+                <list string="Books">
+                    <field name='name'/>
+                    <field name='author'/>
+                    <field name="isbn"/>
+                    <field name="state"/>
+                    <field name="library_id"/>
+                </list>
+            </field>
+        </record>
+
+        <!--this action to book view-->
+        <record id="book_view_action" model="ir.actions.act_window">
+            <field name="name">Books</field>
+            <field name="res_model">library.book</field>
+            <field name="view_mode">list,form</field>
+            <field name="view_id" ref="book_view_list"/>
+            <field name="help" type="html">
+                <p>books</p>
+            </field>
+        </record>
+
+        <!--this is main menu for ak_library_management module-->
+        <menuitem id="library_management_menu" name="Library Management" />
+        <!--this is sub menu Library Management of AK Library Management parent menu for ak_library_management module-->
+        <menuitem id="library_library_management_menu" name="Library Management"  parent="library_management_menu" sequence="1"/>
+        <!--this is sub menu books of Library management menu for book model-->
+        <menuitem id="library_management_books_menu" name="Book"  parent="library_library_management_menu" action="book_view_action"/>
+    </data>
+</odoo>

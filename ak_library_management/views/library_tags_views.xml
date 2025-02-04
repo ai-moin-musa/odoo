@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!--this list view for tags, model: library.book.tags in tags.py -->
+        <record id="tag_view_list" model="ir.ui.view">
+            <field name="name">tag.list</field>
+            <field name="model">library.book.tags</field>
+            <field name="arch" type="xml">
+                <list string="Tags">
+                    <field name='name'/>
+                </list>
+            </field>
+        </record>
+
+        <!--this form view for tags-->
+        <record id="tag_view_form" model="ir.ui.view">
+            <field name="name">tag.view.form</field>
+            <field name="model">library.book.tags</field>
+            <field name="arch" type="xml">
+                <form string="Tag">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!--this action to tag view-->
+        <record id="tag_view_action" model="ir.actions.act_window">
+            <field name="name">tags</field>
+            <field name="res_model">library.book.tags</field>
+            <field name="view_mode">list,form</field>
+            <field name="view_id" ref="tag_view_list"/>
+            <field name="help" type="html">
+                <p>tags</p>
+            </field>
+        </record>
+
+        <!--this is sub menu Configuration of AK Library Management parent menu for ak_library_management module-->
+        <menuitem id="library_management_configuration_menu" name="Configuration"  parent="library_management_menu"/>
+        <!--this is sub menu book tags of configuration parent menu-->
+        <menuitem id="library_management_tags_menu" name="Book Tags" parent="library_management_configuration_menu" action="tag_view_action"/>
+        <!--this is sub menu Book category of configuration parent menu-->
+        <menuitem id="library_management_category" name="Book Category" parent="library_management_configuration_menu" action="category_view_action"/>
+    </data>
+</odoo>

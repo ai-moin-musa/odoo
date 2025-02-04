@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # import all models or register all models here
-from . import book
-from . import category
-from . import member
-from . import tags
-from . import library
+from . import library_book
+from . import library_category
+from . import library_member
+from . import library_tags
+from . import library_library
