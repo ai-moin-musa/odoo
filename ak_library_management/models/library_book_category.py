@@ -10,7 +10,7 @@ class LibraryCategory(models.Model):
     	name				fiction
     	tag_ids             many to many field where select multiple tags from the tag list
     """
-    _name = "library.category"
+    _name = "library.book.category"
     _description = "Library Category"
 
     name = fields.Char(string="Category Name")

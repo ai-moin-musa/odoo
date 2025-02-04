@@ -23,7 +23,7 @@ class LibraryBook(models.Model):
 	author = fields.Char(string="Author Name")
 	isbn = fields.Char(string="ISBN Number")
 	publication_date = fields.Date(string="Date of Publication")
-	category_id = fields.Many2one("library.category","Book Category")
+	category_id = fields.Many2one("library.book.category","Book Category")
 	description = fields.Text(string="Book Summary")
 	state = fields.Selection(selection=[('available',"Available"),("borrowed","Borrowed")],string="Book Availability", copy=False, default='available')
 	tag_ids = fields.Many2many(related='category_id.tag_ids', string="Book Tags")

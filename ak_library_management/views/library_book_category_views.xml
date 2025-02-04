@@ -4,7 +4,7 @@
         <!--this list view for categories, model: category in category.py -->
         <record id="category_view_list" model="ir.ui.view">
             <field name="name">category.list</field>
-            <field name="model">library.category</field>
+            <field name="model">library.book.category</field>
             <field name="arch" type="xml">
                 <list string="Categories">
                     <field name='name'/>
@@ -15,7 +15,7 @@
         <!--this form view for categories-->
         <record id="category_view_form" model="ir.ui.view">
             <field name="name">category.form</field>
-            <field name="model">library.category</field>
+            <field name="model">library.book.category</field>
             <field name="arch" type="xml">
                 <form string="Category">
                     <sheet>
@@ -31,7 +31,7 @@
         <!--this action to category view-->
         <record id="category_view_action" model="ir.actions.act_window">
             <field name="name">categories</field>
-            <field name="res_model">library.category</field>
+            <field name="res_model">library.book.category</field>
             <field name="view_mode">list,form</field>
             <field name="view_id" ref="category_view_list"/>
             <field name="help" type="html">

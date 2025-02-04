@@ -1,11 +1,10 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'Library Management',
-    'author': 'Aktiv Software',
+    'author': 'Moin Musa',
     'version': '18.0.1.0.0',
     'summary': 'Manages books,books category and members at library',
     'website': 'https://www.aktivsoftware.com',
-    'sequence': 10,
     'description': """
     manage books & members
     ====================
@@ -16,10 +15,10 @@
     'data': [
         'security/ir.model.access.csv',
         'views/library_book_views.xml',
-        'views/library_category_views.xml',
+        'views/library_book_category_views.xml',
         'views/library_member_views.xml',
         'views/library_library_views.xml',
-        'views/library_tags_views.xml',
+        'views/library_book_tags_views.xml',
     ],
     'installable': True,
     'application': False,
