@@ -17,7 +17,7 @@
                   sequence="3"/>
         <!--this is sub menu members of Member menu for member model-->
         <menuitem id="members_member"
-                  name="members"
+                  name="Members"
                   parent="library_management_members_menu"
                   action="member_view_action"/>
         <!--this is sub menu categories of AK Library Management menu for category model-->
@@ -37,7 +37,7 @@
                   action="tag_view_action"/>
         <!--this is sub menu Book category of configuration parent menu-->
         <menuitem id="library_management_category"
-                  name="Book Category"
+                  name="Book Categories"
                   parent="library_management_configuration_menu"
                   action="category_view_action"/>
         <!--this is sub menu Library of Library management menu-->

@@ -30,12 +30,12 @@
 
         <!--this action to category view-->
         <record id="category_view_action" model="ir.actions.act_window">
-            <field name="name">categories</field>
+            <field name="name">Categories</field>
             <field name="res_model">library.book.category</field>
             <field name="view_mode">list,form</field>
             <field name="view_id" ref="category_view_list"/>
             <field name="help" type="html">
-                <p>categories</p>
+                <p>Categories</p>
             </field>
         </record>
 

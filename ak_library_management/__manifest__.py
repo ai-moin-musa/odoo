@@ -7,7 +7,6 @@
     'website': 'https://www.aktivsoftware.com',
     'description': """
     manage books & members
-    ====================
     Manges books with its categories.
     Manges member at library.
     """,
