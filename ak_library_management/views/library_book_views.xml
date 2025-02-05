@@ -56,9 +56,5 @@
             </field>
         </record>
 
-        <!--this is main menu for ak_library_management module-->
-        <menuitem id="library_management_menu" name="Library Management" />
-        <!--this is sub menu books of Library management menu for book model-->
-        <menuitem id="library_management_books_menu" name="Book"  parent="library_management_menu" sequence="1" action="book_view_action"/>
     </data>
 </odoo>

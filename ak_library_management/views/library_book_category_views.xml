@@ -39,7 +39,5 @@
             </field>
         </record>
 
-        <!--this is sub menu categories of AK Library Management menu for category model-->
-        <menuitem id="library_management_category_menu" name="Category"  parent="library_management_menu" action="category_view_action" sequence="4"/>
     </data>
 </odoo>

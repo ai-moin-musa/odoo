@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!--this is main menu for ak_library_management module-->
+        <menuitem id="library_management_menu"
+                  name="Library Management" />
+        <!--this is sub menu books of Library management menu for book model-->
+        <menuitem id="library_management_books_menu"
+                  name="Book"
+                  parent="library_management_menu"
+                  sequence="1"
+                  action="book_view_action"/>
+        <!--this is sub menu Members of AK Library Management menu for member model-->
+        <menuitem id="library_management_members_menu"
+                  name="Member"
+                  parent="library_management_menu"
+                  sequence="3"/>
+        <!--this is sub menu members of Member menu for member model-->
+        <menuitem id="members_member"
+                  name="members"
+                  parent="library_management_members_menu"
+                  action="member_view_action"/>
+        <!--this is sub menu categories of AK Library Management menu for category model-->
+        <menuitem id="library_management_category_menu"
+                  name="Category"
+                  parent="library_management_menu"
+                  action="category_view_action"
+                  sequence="4"/>
+        <!--this is sub menu Configuration of AK Library Management parent menu for ak_library_management module-->
+        <menuitem id="library_management_configuration_menu"
+                  name="Configuration"
+                  parent="library_management_menu"/>
+        <!--this is sub menu book tags of configuration parent menu-->
+        <menuitem id="library_management_tags_menu"
+                  name="Book Tags"
+                  parent="library_management_configuration_menu"
+                  action="tag_view_action"/>
+        <!--this is sub menu Book category of configuration parent menu-->
+        <menuitem id="library_management_category"
+                  name="Book Category"
+                  parent="library_management_configuration_menu"
+                  action="category_view_action"/>
+        <!--this is sub menu Library of Library management menu-->
+        <menuitem id="library_menu"
+                  name="Library"
+                  parent="library_management_menu"
+                  sequence="2"/>
+        <!--this is sub menu Libraries of Library menu-->
+        <menuitem id="library_libraries_menu"
+                  name="Libraries"
+                  parent="library_menu"
+                  action="library_view_action"/>
+    </data>
+</odoo>

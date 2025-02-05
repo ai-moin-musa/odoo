@@ -42,9 +42,6 @@
                 <p>members</p>
             </field>
         </record>
-        <!--this is sub menu Members of AK Library Management menu for member model-->
-        <menuitem id="library_management_members_menu" name="Member" parent="library_management_menu" sequence="3"/>
-        <!--this is sub menu members of Member menu for member model-->
-        <menuitem id="members_member" name="members" parent="library_management_members_menu" action="member_view_action"/>
+
     </data>
 </odoo>

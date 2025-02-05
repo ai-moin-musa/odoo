@@ -52,9 +52,5 @@
             </field>
         </record>
 
-        <!--this is sub menu Library of Library management menu-->
-        <menuitem id="library_menu" name="Library" parent="library_management_menu" sequence="2"/>
-        <!--this is sub menu Libraries of Library menu-->
-        <menuitem id="library_libraries_menu" name="Libraries" parent="library_menu" action="library_view_action"/>
     </data>
 </odoo>
