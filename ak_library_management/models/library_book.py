@@ -15,6 +15,7 @@ class LibraryBook(models.Model):
 	description			this book for business
 	state				available or borrowed
 	tag_ids				it is related field ex: - Fiction, Science
+	library_id			This is Many to one field of library.library model library_id field
 	"""
 	_name = "library.book"
 	_description = "Library Books"

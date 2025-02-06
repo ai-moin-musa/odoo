@@ -14,8 +14,6 @@
                             <field name="capacity"/>
                             <field name="notes"/>
                         </group>
-                    </sheet>
-                    <sheet>
                         <notebook>
                             <page string="Books">
                                 <field name="book_ids"/>

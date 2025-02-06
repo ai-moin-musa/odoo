@@ -11,6 +11,7 @@ class LibraryLibrary(models.Model):
         	location            One Park (Location of the library)
         	capacity            5000 (capacity of storing books)
         	notes               This library has fiction books only
+        	book_ids            This is One 2 many relationship with library.book model book_id field
         """
     _name = "library.library"
     _description = "Library"

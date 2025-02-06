@@ -10,7 +10,7 @@
     Manges books with its categories.
     Manges member at library.
     """,
-    'depends': ['base','web'],
+    'depends': ['base','web','product'],
     'data': [
         'security/ir.model.access.csv',
         'views/library_book_views.xml',
@@ -19,8 +19,10 @@
         'views/library_library_views.xml',
         'views/library_book_tags_views.xml',
         'views/library_menuitem.xml',
+
+        
     ],
     'installable': True,
-    'application': False,
+    'application': True,
     'license': 'LGPL-3',
 }
