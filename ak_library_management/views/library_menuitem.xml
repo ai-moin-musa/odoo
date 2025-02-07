@@ -50,5 +50,10 @@
                   name="Libraries"
                   parent="library_menu"
                   action="library_view_action"/>
+        <!--this is menu for Product-->
+        <menuitem id="sale.menu_product_template_action"
+                  parent="library_management_menu"
+                  name="Product"
+                  sequence="5"/>
     </data>
 </odoo>

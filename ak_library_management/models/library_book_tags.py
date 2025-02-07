@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
-#import models and fields from the odoo folder
-from odoo import models,fields
+# import models and fields from the odoo folder
+from odoo import models, fields
+
 
 class LibraryBookTags(models.Model):
     """
@@ -12,4 +13,4 @@ class LibraryBookTags(models.Model):
     _name = "library.book.tags"
     _description = "Tags"
 
-    name = fields.Char(string="Tag Name",required=True)
+    name = fields.Char(string="Tag Name", required=True)

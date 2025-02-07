@@ -12,11 +12,22 @@
                             <field name="name"/>
                             <field name="location"/>
                             <field name="capacity"/>
-                            <field name="notes"/>
+                             <field name="notes"/>
                         </group>
                         <notebook>
                             <page string="Books">
-                                <field name="book_ids"/>
+                                <field name="product_ids">
+                                    <list>
+                                        <field name="name"/>
+                                        <field name="author"/>
+                                        <field name="publisher"/>
+                                        <field name="edition"/>
+                                        <field name="published_date"/>
+                                        <field name="pages"/>
+                                        <field name="available"/>
+                                        <field name="barcode"/>
+                                    </list>
+                                </field>
                             </page>
                         </notebook>
                     </sheet>
@@ -49,6 +60,5 @@
                 <p>Libraries</p>
             </field>
         </record>
-
     </data>
 </odoo>

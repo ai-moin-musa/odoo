@@ -19,8 +19,7 @@
         'views/library_library_views.xml',
         'views/library_book_tags_views.xml',
         'views/library_menuitem.xml',
-
-        
+        'views/product_template_views.xml',
     ],
     'installable': True,
     'application': True,
