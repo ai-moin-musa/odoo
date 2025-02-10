@@ -21,6 +21,7 @@ class ProductTemplate(models.Model):
     status = fields.Selection(selection=[('available','Available'),('borrowed','Borrowed')],string="Status",default="available")
 
     def change_status(self):
+        """This function change or set the status of the book availability"""
         if self.status == 'available':
             self.status = 'borrowed'
         else:

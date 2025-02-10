@@ -6,7 +6,6 @@
             <field name="name">library.library.form</field>
             <field name="model">library.library</field>
             <field name="arch" type="xml">
-
                 <form string="Libraries">
                     <sheet>
                         <div name="button_box" class="oe_button_box" position="inside">

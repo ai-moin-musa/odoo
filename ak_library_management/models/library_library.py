@@ -30,6 +30,7 @@ class LibraryLibrary(models.Model):
 
     @api.depends("product_ids")
     def _compute_borrowed_books_count(self):
+        """ this function count the number of books borrowed from the current library"""
         for record in self:
             count = 0
             for product_id in record.product_ids:
@@ -38,6 +39,7 @@ class LibraryLibrary(models.Model):
             record.borrowed_book_count = count
 
     def borrowed_books(self):
+        """ this function returned filtered view of the borrowed books"""
         return {
             'name': 'Borrowed Books',
             'type': 'ir.actions.act_window',
