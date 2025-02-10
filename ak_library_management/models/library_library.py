@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 # import models and fields from the odoo folder
-from odoo import models, fields
+from odoo import models, fields, api
 
 
 class LibraryLibrary(models.Model):
@@ -26,3 +26,22 @@ class LibraryLibrary(models.Model):
     book_ids = fields.One2many("library.book", "library_id", "Book")
     product_ids = fields.Many2many("product.template","library_product_rel",
                                    "library_id","product_id","Books",domain=[('is_library_book','=',True)])
+    borrowed_book_count = fields.Integer(string="Borrowed Book Count",compute="_compute_borrowed_books_count")
+
+    @api.depends("product_ids")
+    def _compute_borrowed_books_count(self):
+        for record in self:
+            count = 0
+            for product_id in record.product_ids:
+                if product_id.status == 'borrowed':
+                    count += 1
+            record.borrowed_book_count = count
+
+    def borrowed_books(self):
+        return {
+            'name': 'Borrowed Books',
+            'type': 'ir.actions.act_window',
+            'view_mode': 'list,form',
+            'res_model': 'product.template',
+            'domain': [('status', '=', 'borrowed'),('id','in',self.product_ids.ids)],
+        }

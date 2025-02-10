@@ -8,6 +8,12 @@
             <field name="priority">10</field>
             <field name="inherit_id" ref="product.product_template_only_form_view"/>
             <field name="arch" type="xml">
+                <!--put buttons in side the header for the book availability status-->
+                <xpath expr="//header" position="inside">
+                    <button name="change_status" string="Mark as Available" invisible="status == 'available'" type="object"/>
+                    <button name="change_status" string="Mark as Borrowed" invisible="status == 'borrowed'" type="object"/>
+                    <field name="status" widget="statusbar" statusbar_visible="available,borrowed" options="{'clickable':'1'}"/>
+                </xpath>
                 <!--creating a book details tab and put inside the all field of the product_template-->
                 <xpath expr="//sheet[@name='product_form']//notebook" position="inside">
                     <page string="Book Details">
