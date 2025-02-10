@@ -4,13 +4,13 @@ from odoo import models, fields
 
 class LibraryMember(models.Model):
     """
-    	this is model for members at library.
-    	fields example:
-    	field-name			example-value
-    	name				Robert
-    	email				robert@example.com
-    	phone				+91 8745693214
-    	membership_date 	11/07/2008
+    this is model for members at library.
+    fields example:
+    field-name			example-value
+    name				Robert
+    email				robert@example.com
+    phone				+91 8745693214
+    membership_date 	11/07/2008
     """
     _name = "library.member"
     _description = "Library Members"

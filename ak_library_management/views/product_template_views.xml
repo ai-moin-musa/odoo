@@ -45,7 +45,7 @@
 
         <!--Update the window action for ‘Quotations’ in the sales module and modified the action-->
         <record id="sale.action_quotations_with_onboarding" model="ir.actions.act_window">
-            <field name="name">Draft Quotations’</field>
+            <field name="name">Draft Quotations</field>
             <field name="view_mode">list</field>
         </record>
     </odoo>

@@ -5,10 +5,10 @@ from odoo import models, fields
 
 class LibraryBookTags(models.Model):
     """
-    	this is model for book at library.
-    	fields example:
-    	field-name			example-value
-        name                magic
+    this is model for book at library.
+    fields example:
+    field-name			example-value
+    name                magic
     """
     _name = "library.book.tags"
     _description = "Tags"
