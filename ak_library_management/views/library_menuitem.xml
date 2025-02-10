@@ -55,5 +55,15 @@
                   parent="library_management_menu"
                   name="Product"
                   sequence="5"/>
+        <!--change the name of menuitem product variants to product items and changing position-->
+        <menuitem id="sale.menu_products"
+                  parent="sale.product_menu_catalog"
+                  name="Product items"
+                  sequence="35"/>
+        <!--Update the position of the menu Customers, add below Configuration->Sales Teams-->
+        <menuitem id="sale.res_partner_menu"
+                  parent="sale.menu_sale_config"
+                  name="Customers"
+                  sequence="25"/>
     </data>
 </odoo>
