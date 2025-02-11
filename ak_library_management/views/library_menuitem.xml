@@ -50,6 +50,11 @@
                   name="Libraries"
                   parent="library_menu"
                   action="library_view_action"/>
+        <!--this is menu for Multiple Books-->
+        <menuitem id="library_multiple_books_menu"
+                  name="Multiple Books"
+                  parent="library_management_menu"
+                  action="multiple_books_view_action"/>
         <!--this is menu for Product-->
         <menuitem id="sale.menu_product_template_action"
                   parent="library_management_menu"
