@@ -4,6 +4,14 @@ from odoo.exceptions import ValidationError
 
 
 class LibraryMultipleBooks(models.TransientModel):
+    """
+    This model for generating the bulk record of books.
+    This model Contains books names, author_id which is Many to one
+    from the res.partner model, category_id which is Many to one field
+    from the library.book.category model, price of the book, created which
+    is value of acknowledgement bulk records are created or not, bulk_books_count
+    is contain number of books created by this model
+    """
     _name = "library.multiple.books"
     _description = "Library Multiple Books"
 
@@ -70,6 +78,15 @@ class LibraryMultipleBooks(models.TransientModel):
         This function redirect to the product list view.
         """
         book_names_list = [book_name.strip() for book_name in self.book_names.split(",")]
+        if len(book_names_list) == 1:
+            product_id = self.env['product.template'].search([("name","=",book_names_list[0])])
+            return {
+                'name': 'Bulk Books',
+                'type': 'ir.actions.act_window',
+                'view_mode': 'form',
+                'res_model': 'product.template',
+                'res_id': product_id.id,
+            }
         return {
             'name': 'Bulk Books',
             'type': 'ir.actions.act_window',
