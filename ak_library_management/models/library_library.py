@@ -27,8 +27,9 @@ class LibraryLibrary(models.Model):
     product_ids = fields.Many2many("product.template", "library_product_rel",
                                    "library_id", "product_id", "Books",
                                    domain=[('is_library_book', '=', True)])
-    borrowed_book_count = fields.Integer(string="Borrowed Book Count",
-                                         compute="_compute_borrowed_books_count")
+    borrowed_book_count = fields.Integer(
+        string="Borrowed Book Count",
+        compute="_compute_borrowed_books_count")
 
     @api.depends("product_ids")
     def _compute_borrowed_books_count(self):
@@ -46,5 +47,8 @@ class LibraryLibrary(models.Model):
             'type': 'ir.actions.act_window',
             'view_mode': 'list,form',
             'res_model': 'product.template',
-            'domain': [('status', '=', 'borrowed'), ('id', 'in', self.product_ids.ids)],
+            'domain': [
+                ('status', '=', 'borrowed'),
+                ('id', 'in', self.product_ids.ids)
+            ],
         }
