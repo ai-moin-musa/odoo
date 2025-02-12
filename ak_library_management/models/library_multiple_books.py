@@ -8,7 +8,7 @@ class LibraryMultipleBooks(models.TransientModel):
     _description = "Library Multiple Books"
 
     book_names = fields.Text(string="Book Names")
-    author = fields.Many2one("res.partner", "Author")
+    author_id = fields.Many2one("res.partner", "Author")
     category_ids = fields.Many2one(
         "library.book.category", "Books category",
         default=lambda self: self.env['library.book.category'].search([], limit=1).id)
@@ -32,7 +32,7 @@ class LibraryMultipleBooks(models.TransientModel):
             if not bool(self.env['product.template'].search([('name', '=', book_name)])):
                 rec = self.env['product.template'].create({
                     'name': book_name,
-                    'author': self.author.name
+                    'author': self.author_id.name
                 })
         # when for loop successfully completed then else part will be executed
         else:
@@ -60,7 +60,8 @@ class LibraryMultipleBooks(models.TransientModel):
         """
         if self.book_names:
             book_names_list = [book_name.strip() for book_name in self.book_names.split(",")]
-            self.bulk_books_count = self.env['product.template'].search_count([("name", "in", book_names_list)])
+            self.bulk_books_count = (self.env['product.template'].
+                                     search_count([("name", "in", book_names_list)]))
         else:
             self.bulk_books_count = 0  # if book_names has not any value so set count to zeros
 

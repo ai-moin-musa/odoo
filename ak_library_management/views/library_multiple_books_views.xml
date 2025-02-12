@@ -19,7 +19,7 @@
                         </div>
                         <group>
                             <field name="book_names"/>
-                            <field name="author" required="True"/>
+                            <field name="author_id" required="True"/>
                             <field name="category_ids"/>
                             <field name="price"/>
                         </group>
@@ -34,7 +34,7 @@
             <field name="arch" type="xml">
                 <list string="Multiple Books">
                     <field name="book_names"/>
-                    <field name="author"/>
+                    <field name="author_id"/>
                     <field name="category_ids"/>
                     <field name="price"/>
                 </list>
