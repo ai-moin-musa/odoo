@@ -58,7 +58,7 @@
         <!--this is menu for Product-->
         <menuitem id="sale.menu_product_template_action"
                   parent="library_management_menu"
-                  name="Product"
+                  name="Products"
                   sequence="5"/>
         <!--change the name of menuitem product variants to product items and changing position-->
         <menuitem id="sale.menu_products"

@@ -29,8 +29,7 @@
                                         <field name="edition"/>
                                         <field name="published_date"/>
                                         <field name="pages"/>
-                                        <field name="available"/>
-                                        <field name="barcode"/>
+                                        <field name="status"/>
                                     </list>
                                 </field>
                             </page>
@@ -50,7 +49,6 @@
                     <field name="location"/>
                     <field name="capacity"/>
                     <field name="notes"/>
-                    <field name="book_ids"/>
                 </list>
             </field>
         </record>

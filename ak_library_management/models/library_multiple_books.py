@@ -1,24 +1,78 @@
 # -*- coding: utf-8 -*-
-# import models and fields from the odoo folder
 from odoo import models, fields, api
+from odoo.exceptions import ValidationError
 
 
 class LibraryMultipleBooks(models.TransientModel):
-    """
-    pass
-    """
     _name = "library.multiple.books"
     _description = "Library Multiple Books"
 
     book_names = fields.Text(string="Book Names")
     author = fields.Many2one("res.partner", "Author")
-    category = fields.Many2one("library.book.category", "Books category",
-                               default= lambda self: self.env['library.book.category'].search([], limit=1).id)
+    category_ids = fields.Many2one(
+        "library.book.category", "Books category",
+        default=lambda self: self.env['library.book.category'].search([], limit=1).id)
     price = fields.Integer(string="price", default=0)
-
+    created = fields.Integer(default=0)
+    bulk_books_count = fields.Integer(string="Product Count",
+                                      compute="_compute_bulk_books_count")
 
     def create_products(self):
-        print("created..............")
+        """
+        This function create multiple books in product.template model.
+        which is comma separated books names given input by user.
+        """
+        # this is condition for user can not give empty book names
+        if ",," in self.book_names:
+            # Raising Validation Error if book names are not valid
+            raise ValidationError("Invalid Book Names")
+        for book_name in self.book_names.split(','):
+            # removing spaces in to the book name
+            book_name = book_name.strip()
+            if not bool(self.env['product.template'].search([('name', '=', book_name)])):
+                rec = self.env['product.template'].create({
+                    'name': book_name,
+                    'author': self.author.name
+                })
+        # when for loop successfully completed then else part will be executed
+        else:
+            self.created = 1  # when bulk record created so set created value is 1
 
     def revert_changes(self):
-        print("===========revert changes")
+        """
+        This function revert changes
+        If clicked, it will delete all products created
+        from the current Bulk Upload Books Record session.
+        """
+        for book_name in self.book_names.split(','):
+            book_name = book_name.strip()
+            self.env['product.template'].search([('name', '=', book_name)]).unlink()
+        # when for loop successfully completed then else part will be executed
+        else:
+            self.created = 0  # when bulk record deleted from the product.template model.
+            # so set created value is 0
+
+    @api.depends("book_names")
+    def _compute_bulk_books_count(self):
+        """
+        This function compute based on the book_names field.
+        count the all books or products in the current bulk
+        """
+        if self.book_names:
+            book_names_list = [book_name.strip() for book_name in self.book_names.split(",")]
+            self.bulk_books_count = self.env['product.template'].search_count([("name", "in", book_names_list)])
+        else:
+            self.bulk_books_count = 0  # if book_names has not any value so set count to zeros
+
+    def bulk_books(self):
+        """
+        This function redirect to the product list view.
+        """
+        book_names_list = [book_name.strip() for book_name in self.book_names.split(",")]
+        return {
+            'name': 'Bulk Books',
+            'type': 'ir.actions.act_window',
+            'view_mode': 'list,form',
+            'res_model': 'product.template',
+            'domain': [("name", "in", book_names_list)],
+        }

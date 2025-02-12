@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-# import models and fields from the odoo folder
 from odoo import models, fields
 
 

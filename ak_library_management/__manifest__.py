@@ -10,7 +10,7 @@
     Manges books with its categories.
     Manges member at library.
     """,
-    'depends': ['base', 'web', 'product', 'contacts', 'sale_management'],
+    'depends': ['base', 'web', 'product', 'contacts', 'sale'],
     'data': [
         'security/ir.model.access.csv',
         'views/library_book_views.xml',
