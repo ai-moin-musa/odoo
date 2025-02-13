@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from odoo import models, fields
+from odoo import models, fields, api
 
 
 class ProductTemplate(models.Model):
@@ -27,3 +27,12 @@ class ProductTemplate(models.Model):
     def change_status(self):
         """This function change or set the status of the book availability"""
         self.status = "available" if self.status == "borrowed" else "borrowed"
+
+    @api.model_create_multi
+    def create(self, vals):
+        """
+        I override this method for set the reference value by sequence
+        """
+        vals[0]['default_code'] = self.env['ir.sequence'].next_by_code('product.template')
+        res = super().create(vals)
+        return res

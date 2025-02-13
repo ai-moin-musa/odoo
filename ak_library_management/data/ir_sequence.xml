@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!--This sequence for reference in product.template model and product_template_views-->
+        <record id="seq_product_ref" model="ir.sequence">
+            <field name="name">Product Reference</field>
+            <field name="code">product.template</field>
+            <field name="prefix">BANK-%(year)s-</field>
+            <field name="padding">4</field>
+            <field name="company_id" eval="False"/>
+        </record>
+        <!--This sequence for membership number in library.member and library_member_views-->
+        <record id="seq_member_membership" model="ir.sequence">
+            <field name="name">Member Membership</field>
+            <field name="code">library.member</field>
+            <field name="prefix">MEM-%(year)s-%(month)s-</field>
+            <field name="padding">4</field>
+            <field name="company_id" eval="False"/>
+        </record>
+    </data>
+</odoo>

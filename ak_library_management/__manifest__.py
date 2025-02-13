@@ -21,6 +21,7 @@
         'views/library_multiple_books_views.xml',
         'views/product_template_views.xml',
         'views/library_menuitem.xml',
+        'data/ir_sequence.xml',
     ],
     'installable': True,
     'application': True,
