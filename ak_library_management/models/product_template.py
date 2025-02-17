@@ -29,10 +29,11 @@ class ProductTemplate(models.Model):
         self.status = "available" if self.status == "borrowed" else "borrowed"
 
     @api.model_create_multi
-    def create(self, vals):
+    def create(self, vals_list):
         """
         I override this method for set the reference value by sequence
         """
-        vals[0]['default_code'] = self.env['ir.sequence'].next_by_code('product.template')
-        res = super().create(vals)
+        for val in vals_list:
+            val['default_code'] = self.env['ir.sequence'].next_by_code('product.template')
+        res = super().create(vals_list)
         return res

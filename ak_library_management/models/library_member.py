@@ -23,10 +23,11 @@ class LibraryMember(models.Model):
     membership_no = fields.Char(string="Membership Number",readonly=True)
 
     @api.model_create_multi
-    def create(self, vals):
+    def create(self, vals_list):
         """
         I override this method for set the membership_no value by sequence
         """
-        vals[0]['membership_no'] = self.env['ir.sequence'].next_by_code('library.member')
-        res = super().create(vals)
+        for val in vals_list:
+            val['membership_no'] = self.env['ir.sequence'].next_by_code('library.member')
+        res = super().create(vals_list)
         return res
