@@ -2,7 +2,7 @@
 {
     'name': 'Library Management',
     'author': 'Moin Musa',
-    'version': '18.0.1.0.0',
+    'version': '18.0.1.3.0',
     'summary': 'Manages books,books category and members at library',
     'website': 'https://www.aktivsoftware.com',
     'description': """
@@ -21,6 +21,7 @@
         'views/library_multiple_books_views.xml',
         'views/product_template_views.xml',
         'views/library_menuitem.xml',
+        'views/res_users_views.xml',
         'data/ir_sequence.xml',
     ],
     'installable': True,

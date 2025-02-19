@@ -9,11 +9,11 @@
                 <form string="Multiple Books">
                     <header>
                         <button name="create_products" string="Create Products" type="object"/>
-                        <button name="revert_changes" string="Revert Changes" invisible="created == 0" type="object"/>
+                        <button name="revert_changes" string="Revert Changes" invisible="bulk_books_count == 0" type="object"/>
                     </header>
                     <sheet>
                         <div name="button_box" class="oe_button_box" position="inside">
-                            <button class="oe_stat_button" type="object" name="bulk_books" icon="fa-book" invisible="created == 0">
+                            <button class="oe_stat_button" type="object" name="bulk_books" icon="fa-book" invisible="bulk_books_count == 0">
                                 <field name="bulk_books_count" string="Product Count" widget="statinfo"/>
                             </button>
                         </div>

@@ -8,8 +8,7 @@ class LibraryMultipleBooks(models.TransientModel):
     This model for generating the bulk record of books.
     This model Contains books names, author_id which is Many to one
     from the res.partner model, category_id which is Many to one field
-    from the library.book.category model, price of the book, created which
-    is value of acknowledgement bulk records are created or not, bulk_books_count
+    from the library.book.category model, price of the book, bulk_books_count
     is contain number of books created by this model
     """
     _name = "library.multiple.books"
@@ -19,9 +18,9 @@ class LibraryMultipleBooks(models.TransientModel):
     author_id = fields.Many2one("res.partner", "Author")
     category_ids = fields.Many2one(
         "library.book.category", "Books category",
-        default=lambda self: self.env['library.book.category'].search([], limit=1).id)
+        default=lambda self: self.env['library.book.category']
+        .search([], limit=1).id)
     price = fields.Integer(string="price", default=0)
-    created = fields.Integer(default=0)
     bulk_books_count = fields.Integer(string="Product Count",
                                       compute="_compute_bulk_books_count")
 
@@ -31,20 +30,17 @@ class LibraryMultipleBooks(models.TransientModel):
         which is comma separated books names given input by user.
         """
         # this is condition for user can not give empty book names
-        if ",," in self.book_names:
+        if not self.book_names or ",," in self.book_names:
             # Raising Validation Error if book names are not valid
             raise ValidationError("Invalid Book Names")
         for book_name in self.book_names.split(','):
             # removing spaces in to the book name
             book_name = book_name.strip()
             if not bool(self.env['product.template'].search([('name', '=', book_name)])):
-                rec = self.env['product.template'].create({
+                self.env['product.template'].create({
                     'name': book_name,
                     'author': self.author_id.name
                 })
-        # when for loop successfully completed then else part will be executed
-        else:
-            self.created = 1  # when bulk record created so set created value is 1
 
     def revert_changes(self):
         """
@@ -55,10 +51,7 @@ class LibraryMultipleBooks(models.TransientModel):
         for book_name in self.book_names.split(','):
             book_name = book_name.strip()
             self.env['product.template'].search([('name', '=', book_name)]).unlink()
-        # when for loop successfully completed then else part will be executed
-        else:
-            self.created = 0  # when bulk record deleted from the product.template model.
-            # so set created value is 0
+        # so set created value is 0
 
     @api.depends("book_names")
     def _compute_bulk_books_count(self):
@@ -79,7 +72,7 @@ class LibraryMultipleBooks(models.TransientModel):
         """
         book_names_list = [book_name.strip() for book_name in self.book_names.split(",")]
         if len(book_names_list) == 1:
-            product_id = self.env['product.template'].search([("name","=",book_names_list[0])])
+            product_id = self.env['product.template'].search([("name", "=", book_names_list[0])])
             return {
                 'name': 'Bulk Books',
                 'type': 'ir.actions.act_window',
