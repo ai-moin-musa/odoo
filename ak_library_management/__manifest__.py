@@ -2,7 +2,7 @@
 {
     'name': 'Library Management',
     'author': 'Moin Musa',
-    'version': '18.0.1.3.0',
+    'version': '18.0.2.1.0',
     'summary': 'Manages books,books category and members at library',
     'website': 'https://www.aktivsoftware.com',
     'description': """
@@ -10,7 +10,7 @@
     Manges books with its categories.
     Manges member at library.
     """,
-    'depends': ['base', 'web', 'product', 'contacts', 'sale'],
+    'depends': ['stock', 'contacts', 'sale'],
     'data': [
         'security/ir.model.access.csv',
         'views/library_book_views.xml',
@@ -23,6 +23,8 @@
         'views/library_menuitem.xml',
         'views/res_users_views.xml',
         'data/ir_sequence.xml',
+        'wizard/sale_order_validation_wizard_views.xml',
+        'views/sale_order_views.xml'
     ],
     'installable': True,
     'application': True,

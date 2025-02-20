@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_order_form" model="ir.ui.view">
+            <field name="name">sale.order.form</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//header//button[@name='action_confirm'][2]" position="attributes">
+                    <attribute name="invisible">state != 'draft' or permission_manager</attribute>
+                </xpath>
+                <xpath expr="//header//button[@name='action_cancel']" position="attributes">
+                    <attribute name="invisible">state not in ['draft', 'sent', 'sale'] or not id or locked or permission_manager</attribute>
+                </xpath>
+                <xpath expr="//header" position="inside">
+                    <button name="approve" type="object" string="Approve" invisible="not (permission_manager and is_manager)"/>
+                    <button name="reject" type="object" string="Reject" invisible="not (permission_manager and is_manager)"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

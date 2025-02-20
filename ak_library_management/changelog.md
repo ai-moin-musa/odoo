@@ -23,3 +23,12 @@ It should not be visible if no products have been created yet.
 - It will redirect the user to the list of products created from this Bulk Upload Books Record.
 - The button will only be visible if products have been created using this Bulk Upload Books Record.
 - If no products are created, the button will not appear. If only one product is created from this Bulk Upload Books Record then this button will redirect the user to the form view of that product.
+
+## [Version 2.0.0]()
+### Adding Depends for method overriding assignment
+- stock (Inventory) added in depends list
+
+## [Version 2.1.0]()
+### customize the sale order view
+- Adding the approve and reject button for manager
+- created wizard view for validation message
