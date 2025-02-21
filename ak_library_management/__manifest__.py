@@ -24,7 +24,10 @@
         'views/res_users_views.xml',
         'data/ir_sequence.xml',
         'wizard/sale_order_validation_wizard_views.xml',
-        'views/sale_order_views.xml'
+        'views/sale_order_views.xml',
+        'views/res_partner_views.xml',
+        'views/borrow_transaction_history_views.xml',
+        'wizard/borrow_books_wizard_views.xml',
     ],
     'installable': True,
     'application': True,

@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 from odoo import models, fields, api
-from odoo.exceptions import ValidationError
 
 
 class LibraryMultipleBooks(models.TransientModel):
@@ -20,7 +19,7 @@ class LibraryMultipleBooks(models.TransientModel):
         "library.book.category", "Books category",
         default=lambda self: self.env['library.book.category']
         .search([], limit=1).id)
-    price = fields.Integer(string="price", default=0)
+    price = fields.Integer(string="price")
     bulk_books_count = fields.Integer(string="Product Count",
                                       compute="_compute_bulk_books_count")
 
@@ -29,10 +28,6 @@ class LibraryMultipleBooks(models.TransientModel):
         This function create multiple books in product.template model.
         which is comma separated books names given input by user.
         """
-        # this is condition for user can not give empty book names
-        if not self.book_names or ",," in self.book_names:
-            # Raising Validation Error if book names are not valid
-            raise ValidationError("Invalid Book Names")
         for book_name in self.book_names.split(','):
             # removing spaces in to the book name
             book_name = book_name.strip()
@@ -48,10 +43,8 @@ class LibraryMultipleBooks(models.TransientModel):
         If clicked, it will delete all products created
         from the current Bulk Upload Books Record session.
         """
-        for book_name in self.book_names.split(','):
-            book_name = book_name.strip()
-            self.env['product.template'].search([('name', '=', book_name)]).unlink()
-        # so set created value is 0
+        book_names_list = self.book_names.split(',')
+        self.env['product.template'].search([('name', '=', book_names_list)]).unlink()
 
     @api.depends("book_names")
     def _compute_bulk_books_count(self):
@@ -60,30 +53,23 @@ class LibraryMultipleBooks(models.TransientModel):
         count the all books or products in the current bulk
         """
         if self.book_names:
-            book_names_list = [book_name.strip() for book_name in self.book_names.split(",")]
+            book_names_list = self.book_names.split(',')
             self.bulk_books_count = (self.env['product.template'].
                                      search_count([("name", "in", book_names_list)]))
         else:
-            self.bulk_books_count = 0  # if book_names has not any value so set count to zeros
+            self.bulk_books_count = 0
 
     def bulk_books(self):
         """
         This function redirect to the product list view.
         """
-        book_names_list = [book_name.strip() for book_name in self.book_names.split(",")]
-        if len(book_names_list) == 1:
-            product_id = self.env['product.template'].search([("name", "=", book_names_list[0])])
-            return {
-                'name': 'Bulk Books',
-                'type': 'ir.actions.act_window',
-                'view_mode': 'form',
-                'res_model': 'product.template',
-                'res_id': product_id.id,
-            }
+        book_names_list = self.book_names.split(',')
+        product_rec = self.env['product.template'].search([("name","in",book_names_list)])
         return {
             'name': 'Bulk Books',
             'type': 'ir.actions.act_window',
-            'view_mode': 'list,form',
             'res_model': 'product.template',
-            'domain': [("name", "in", book_names_list)],
+            'view_mode': 'list,form' if len(book_names_list) > 1 else 'form',
+            'domain': [("name", "in", book_names_list)] if len(book_names_list) else [],
+            'res_id': product_rec[0].id if len(product_rec) == 1 else None,
         }

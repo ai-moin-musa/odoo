@@ -37,3 +37,17 @@ class ProductTemplate(models.Model):
             val['default_code'] = self.env['ir.sequence'].next_by_code('product.template')
         res = super().create(vals_list)
         return res
+
+    def action_pass(self):
+        return {
+            'type': 'ir.actions.act_window',
+            'name': 'Borrow Books',
+            'res_model': 'borrow.books.wizard',
+            'target': 'new',
+            'view_mode': 'form',
+        }
+
+    @api.depends('name','author')
+    def _compute_display_name(self):
+        for rec in self:
+            rec.display_name = f"[{rec.author}]{rec.name}"

@@ -70,5 +70,11 @@
                   parent="sale.menu_sale_config"
                   name="Customers"
                   sequence="25"/>
+        <!--This menu item for borrow_transaction_history_views.xml-->
+        <menuitem id="borrow_transaction_history_menu"
+                  name="Borrow Transaction History"
+                  parent="library_menu"
+                  sequence="6"
+                  action="borrow_transaction_history_view_action"/>
     </data>
 </odoo>

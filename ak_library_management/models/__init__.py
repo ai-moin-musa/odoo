@@ -8,3 +8,5 @@ from . import product_template
 from . import library_multiple_books
 from . import res_users
 from . import sale_order
+from . import res_partner
+from . import borrow_transaction_history
