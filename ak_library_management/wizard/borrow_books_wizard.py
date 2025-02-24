@@ -11,6 +11,7 @@ class BorrowBooksWizard(models.TransientModel):
     from_datetime = fields.Datetime(string="From Datetime", default=fields.date.today(), required=True)
     end_datetime = fields.Datetime(string="End Datetime", required=True)
     book_ids = fields.Many2many(comodel_name="product.template", string="Books", domain=[('is_library_book', '=', True)])
+    is_member = fields.Boolean(related="customer_name.is_member")
     deposit_amount = fields.Float(string="Deposit Amount")
 
     @api.constrains('from_datetime', 'end_datetime')
@@ -20,7 +21,7 @@ class BorrowBooksWizard(models.TransientModel):
 
     def action_confirm(self):
         for rec in self:
-            print(rec.customer_name.is_member)
+            print(rec.customer_name)
             print(rec.from_datetime)
             print(rec.end_datetime)
             for book in rec.book_ids:

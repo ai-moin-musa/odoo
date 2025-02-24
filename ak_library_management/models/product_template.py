@@ -47,7 +47,11 @@ class ProductTemplate(models.Model):
             'view_mode': 'form',
         }
 
-    @api.depends('name','author')
+    @api.depends('name', 'author')
     def _compute_display_name(self):
+        """
+        this method _compute_display_name for the
+        created custom display name.
+        """
         for rec in self:
             rec.display_name = f"[{rec.author}]{rec.name}"

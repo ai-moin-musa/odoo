@@ -16,7 +16,7 @@
                                     <field name="author"/>
                                 </list>
                             </field>
-                            <field name="deposit_amount"/>
+                            <field name="deposit_amount" invisible="is_member"/>
                         </group>
                     </sheet>
                     <footer>
