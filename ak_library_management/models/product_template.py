@@ -38,7 +38,7 @@ class ProductTemplate(models.Model):
         res = super().create(vals_list)
         return res
 
-    def action_pass(self):
+    def action_borrow_books_wizard(self):
         return {
             'type': 'ir.actions.act_window',
             'name': 'Borrow Books',
@@ -54,4 +54,7 @@ class ProductTemplate(models.Model):
         created custom display name.
         """
         for rec in self:
-            rec.display_name = f"[{rec.author}]{rec.name}"
+            if rec._context.get('author_book'):
+                rec.display_name = f"[{rec.author}]{rec.name}"
+            else:
+                rec.display_name = rec.name

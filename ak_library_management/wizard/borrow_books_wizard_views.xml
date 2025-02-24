@@ -11,11 +11,7 @@
                             <field name="customer_name"/>
                             <field name="from_datetime"/>
                             <field name="end_datetime"/>
-                            <field name="book_ids" widget="many2many_tags">
-                                <list>
-                                    <field name="author"/>
-                                </list>
-                            </field>
+                            <field name="book_ids" widget="many2many_tags" context="{'author_book':True}"/>
                             <field name="deposit_amount" invisible="is_member"/>
                         </group>
                     </sheet>

@@ -26,9 +26,26 @@ It should not be visible if no products have been created yet.
 
 ## [Version 2.0.0]()
 ### Adding Depends for method overriding assignment
-- stock (Inventory) added in depends list
+- stock (Inventory) added in depends list.
 
 ## [Version 2.1.0]()
 ### customize the sale order view
-- Adding the approve and reject button for manager
-- created wizard view for validation message
+- Adding the approve and reject button for manager.
+- created wizard view for validation message.
+
+## [Version 2.2.0]()
+### Adding fields in contact model (res.partner)
+- added is_manager field for contact user is manager or not.
+- added not_trust_worthy field for customer is trustable for this transaction.
+
+## [Versionj 2.2.1]()
+### Created Borrow Transaction History Model.
+
+## [Version 2.3.0]()
+### Created views for borrow transaction history model.
+
+## [Version 2.3.1]()
+### Created the menus for accessing the 'borrow_transaction_history' model views.
+
+## [Version 2.4.0]()
+### Created borrow books wizard model and its view.

@@ -10,7 +10,8 @@ class BorrowBooksWizard(models.TransientModel):
     customer_name = fields.Many2one(comodel_name="res.partner", string="Customer Name")
     from_datetime = fields.Datetime(string="From Datetime", default=fields.date.today(), required=True)
     end_datetime = fields.Datetime(string="End Datetime", required=True)
-    book_ids = fields.Many2many(comodel_name="product.template", string="Books", domain=[('is_library_book', '=', True)])
+    book_ids = fields.Many2many(comodel_name="product.template", string="Books",
+                                domain=[('is_library_book', '=', True)])
     is_member = fields.Boolean(related="customer_name.is_member")
     deposit_amount = fields.Float(string="Deposit Amount")
 
@@ -21,9 +22,6 @@ class BorrowBooksWizard(models.TransientModel):
 
     def action_confirm(self):
         for rec in self:
-            print(rec.customer_name)
-            print(rec.from_datetime)
-            print(rec.end_datetime)
-            for book in rec.book_ids:
-                print(book.is_library_book)
-            print(rec.deposit_amount)
+            if rec.customer_name.is_member:
+                print(f"{rec.customer_name.name} is {rec.customer_name.is_member} member")
+
