@@ -14,7 +14,7 @@
                 </xpath>
                 <xpath expr="//header" position="inside">
                     <button name="approve" type="object" string="Approve" invisible="not (permission_manager and is_manager)"/>
-                    <button name="reject" type="object" string="Reject" invisible="not (permission_manager and is_manager)"/>
+                    <button name="reject" type="object" string="Reject" invisible="not permission_manager"/>
                 </xpath>
             </field>
         </record>

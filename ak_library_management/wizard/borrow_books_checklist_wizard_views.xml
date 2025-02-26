@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="borrow_books_checklist_wizard_view_form" model="ir.ui.view">
+            <field name="name">borrow.books.checklist.wizard.view.form</field>
+            <field name="model">borrow.books.checklist.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Warning Message">
+                    <group>
+                        <field name="message" nolabel="1"/>
+                    </group>
+                    <footer>
+                        <button name="save" string="Continue" special="save"/>
+                        <button name="action_cancel" string="Cancel" type="object"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>

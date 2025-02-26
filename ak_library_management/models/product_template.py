@@ -41,8 +41,8 @@ class ProductTemplate(models.Model):
     def action_borrow_books_wizard(self):
         return {
             'type': 'ir.actions.act_window',
-            'name': 'Borrow Books',
-            'res_model': 'borrow.books.wizard',
+            'name': 'Borrow Books Transaction History',
+            'res_model': 'borrow.transaction.history',
             'target': 'new',
             'view_mode': 'form',
         }
