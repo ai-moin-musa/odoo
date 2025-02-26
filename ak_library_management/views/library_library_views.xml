@@ -15,6 +15,7 @@
                         </div>
                         <group>
                             <field name="name"/>
+                            <field name="librarian_id" required="True"/>
                             <field name="location"/>
                             <field name="capacity"/>
                              <field name="notes"/>
@@ -35,6 +36,7 @@
                             </page>
                         </notebook>
                     </sheet>
+                    <chatter/>
                 </form>
             </field>
         </record>
@@ -46,6 +48,7 @@
             <field name="arch" type="xml">
                 <list string="Libraries">
                     <field name='name'/>
+                    <field name="librarian_id"/>
                     <field name="location"/>
                     <field name="capacity"/>
                     <field name="notes"/>

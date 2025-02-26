@@ -73,7 +73,7 @@
         <!--This menu item for borrow_transaction_history_views.xml-->
         <menuitem id="borrow_transaction_history_menu"
                   name="Borrow Transaction History"
-                  parent="library_menu"
+                  parent="library_management_menu"
                   sequence="6"
                   action="borrow_transaction_history_view_action"/>
     </data>

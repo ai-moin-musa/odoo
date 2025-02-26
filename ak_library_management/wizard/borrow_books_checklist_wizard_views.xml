@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data>
+        <!--This form view for the borrow books popup message-->
         <record id="borrow_books_checklist_wizard_view_form" model="ir.ui.view">
             <field name="name">borrow.books.checklist.wizard.view.form</field>
             <field name="model">borrow.books.checklist.wizard</field>

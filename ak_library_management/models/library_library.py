@@ -18,6 +18,7 @@ class LibraryLibrary(models.Model):
     """
     _name = "library.library"
     _description = "Library"
+    _inherit = "mail.thread"
 
     name = fields.Char(string="Name", required=True)
     location = fields.Char(string="Location", required=True)
@@ -30,6 +31,10 @@ class LibraryLibrary(models.Model):
     borrowed_book_count = fields.Integer(
         string="Borrowed Book Count",
         compute="_compute_borrowed_books_count")
+    # Added in the constraints assignment
+    librarian_id = fields.Many2one(comodel_name='res.users', string='Librarian')
+    # Added constraints for library name is uniquely identify
+    _sql_constraints = [("name_unique", "unique(name)", "The library name is unique.")]
 
     @api.depends("product_ids")
     def _compute_borrowed_books_count(self):

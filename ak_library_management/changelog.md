@@ -48,8 +48,5 @@ It should not be visible if no products have been created yet.
 ### Created the menus for accessing the 'borrow_transaction_history' model views.
 
 ## [Version 2.4.0]()
-### Created borrow books wizard model and its view.
-
-## [Version 2.5.0]()
 ### Created borrow books checklist wizard (views/model)
 - for showing dynamics warning

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data>
+        <!--This form view for borrow transaction history -->
         <record id="borrow_transaction_history_view_form" model="ir.ui.view">
             <field name="name">borrow.transaction.history.view.form</field>
             <field name="model">borrow.transaction.history</field>
@@ -22,6 +23,7 @@
                 </form>
             </field>
         </record>
+        <!--This list view for the borrow transaction history-->
         <record id="borrow_transaction_history_view_list" model="ir.ui.view">
             <field name="name">borrow.transaction.history.view.list</field>
             <field name="model">borrow.transaction.history</field>
@@ -33,6 +35,7 @@
                 </list>
             </field>
         </record>
+        <!--This action redirect the view of borrow transaction history-->
         <record id="borrow_transaction_history_view_action" model="ir.actions.act_window">
             <field name="name">Borrow Transaction History</field>
             <field name="res_model">borrow.transaction.history</field>
