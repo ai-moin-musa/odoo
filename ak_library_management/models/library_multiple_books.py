@@ -64,6 +64,8 @@ class LibraryMultipleBooks(models.TransientModel):
     def bulk_books(self):
         """
         This function redirect to the product list view.
+        :return: this method returning action
+        :rtype: dict
         """
         action = {
             'name': 'Bulk Books',
