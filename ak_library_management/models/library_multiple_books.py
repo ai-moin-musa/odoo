@@ -25,10 +25,14 @@ class LibraryMultipleBooks(models.TransientModel):
                                       compute="_compute_bulk_books_count")
     product_ids = fields.Many2many(comodel_name="product.template")
 
-    def create_products(self):
+    def action_create_products(self):
         """
-        This function create multiple books in product.template model.
-        which is comma separated books names given input by user.
+        This Method used to create multiple products
+        and also send notification to user for created
+        products.
+        :params: None
+        :return: None
+        :rtype: None
         """
         for book_name in self.book_names.split(','):
             book_name.strip()
@@ -37,7 +41,6 @@ class LibraryMultipleBooks(models.TransientModel):
                     'name': book_name,
                     'author': self.author_id.name
                 })
-                # link or assign created product id to this model many2many product_ids
                 self.product_ids = [(4, products.id)]
                 # send the notification to the current user for created message
                 self.env['bus.bus']._sendone(self.env.user.partner_id, 'simple_notification', {
@@ -49,7 +52,7 @@ class LibraryMultipleBooks(models.TransientModel):
                 for rec in recs:
                     self.product_ids = [(4, rec.id)]
 
-    def revert_changes(self):
+    def action_revert_changes(self):
         """
         This function revert changes
         If clicked, it will delete all products created

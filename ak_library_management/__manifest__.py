@@ -2,7 +2,7 @@
 {
     'name': 'Library Management',
     'author': 'Moin Musa',
-    'version': '18.0.2.4.0',
+    'version': '18.0.2.8.0',
     'summary': 'Manages books,books category and members at library',
     'website': 'https://www.aktivsoftware.com',
     'description': """

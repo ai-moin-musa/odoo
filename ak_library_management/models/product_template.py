@@ -22,7 +22,11 @@ class ProductTemplate(models.Model):
     # this field already in parent class I changed label of field
     barcode = fields.Char(string="ISBN Number")
     status = fields.Selection(
-        selection=[('available', 'Available'), ('borrowed', 'Borrowed'), ('returned', 'Returned')],
+        selection=[
+            ('available', 'Available'),
+            ('borrowed', 'Borrowed'),
+            ('returned', 'Returned')
+        ],
         string="Status",
         tracking=True)
     due_date = fields.Date(default=date.today())
@@ -37,7 +41,7 @@ class ProductTemplate(models.Model):
 
     def mark_as_returned(self):
         """This method for status change to returned"""
-        self.write({'status':'returned'})
+        self.write({'status': 'returned'})
 
     @api.model_create_multi
     def create(self, vals_list):
@@ -85,20 +89,26 @@ class ProductTemplate(models.Model):
     @api.constrains('status')
     def _check_status(self):
         """
-        This _check_status constraints method check all the
-        conditions and sends notifications and logs messages
+        this method used to if user try to return book
+        status is returned and returning date is not arrive
+        so raise validation error else sending notification.
+        and also if book status change into returned or borrowed
+        so send message into chatter and schedule activity.
+        :params: None
+        :return: None
+        :rtype: None
         """
         # check the returning day
         if self.status == 'returned' and date.today() <= self.due_date:
             raise ValidationError(f"You can not Returned the Book before {self.due_date}")
-        elif self.status != False:
+        elif self.status:
             self.env['bus.bus']._sendone(self.env.user.partner_id, 'simple_notification', {
                 'type': 'warning',
                 'message': f"{self.name} book status is changed to {self.status}",
             })
 
         # creating schedule activity and send log message for borrow books and return books
-        if self.status in ('borrowed','returned'):
+        if self.status in ('borrowed', 'returned'):
             self.message_post(body=f'{self.env.user.name} is '
                                    f'{self.status} book. Date: {date.today()}')
             if self.status == 'borrowed':
