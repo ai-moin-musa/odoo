@@ -12,6 +12,7 @@ class LibraryMultipleBooks(models.TransientModel):
     """
     _name = "library.multiple.books"
     _description = "Library Multiple Books"
+    _rec_name = "book_names"
 
     book_names = fields.Text(string="Book Names")
     author_id = fields.Many2one("res.partner", "Author")
@@ -43,6 +44,10 @@ class LibraryMultipleBooks(models.TransientModel):
                     'type': 'success',
                     'message': f"{book_name} is created as product.",
                 })
+            else:
+                recs = self.env['product.template'].search([('name', '=', book_name)])
+                for rec in recs:
+                    self.product_ids = [(4, rec.id)]
 
     def revert_changes(self):
         """
