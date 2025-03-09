@@ -56,9 +56,10 @@
                   parent="library_management_menu"
                   action="multiple_books_view_action"/>
         <!--this is menu for Product-->
-        <menuitem id="sale.menu_product_template_action"
-                  parent="library_management_menu"
+        <menuitem id="product_template_books_menu"
                   name="Products"
+                  parent="library_management_menu"
+                  action="product.product_template_action"
                   sequence="5"/>
         <!--change the name of menuitem product variants to product items and changing position-->
         <menuitem id="sale.menu_products"

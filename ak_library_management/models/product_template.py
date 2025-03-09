@@ -35,6 +35,10 @@ class ProductTemplate(models.Model):
         """This is method for status change available to borrowed"""
         self.status = "borrowed"
 
+    def mark_as_returned(self):
+        """This method for status change to returned"""
+        self.write({'status':'returned'})
+
     @api.model_create_multi
     def create(self, vals_list):
         """
