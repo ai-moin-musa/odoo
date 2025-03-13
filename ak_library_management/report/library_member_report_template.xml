@@ -1,0 +1,84 @@
+<odoo>
+    <!--html container of custom library member report-->
+    <template id="report_library_member">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="ak_library_management.custom_external_layout_library_member"/>
+            </t>
+        </t>
+    </template>
+
+
+    <!--Member Report Template-->
+    <template id="custom_external_layout_library_member">
+        <t t-if="not o" t-set="o" t-value="doc"/>
+
+        <t t-if="not company">
+            <t t-if="company_id">
+                <t t-set="company" t-value="company_id"/>
+            </t>
+            <t t-elif="o and 'company_id' in o and o.company_id.sudo()">
+                <t t-set="company" t-value="o.company_id.sudo()"/>
+            </t>
+            <t t-else="else">
+                <t t-set="company" t-value="res_company"/>
+            </t>
+        </t>
+
+        <div t-attf-class="header o_company_#{company.id}_layout">
+            <div t-if="company" class="text-center">
+                <h3>
+                    <span t-out="company.partner_id.name"/>
+                </h3>
+            </div>
+        </div>
+        <center>
+            <div t-attf-class="article o_company_#{company.id}_layout">
+                <strong>Member's Details:-</strong>
+                <br/>
+                <br/>
+                <b>Name:</b>
+                <t t-out="o.member_id.name or ''"/>
+                <br/>
+                <br/>
+                <b>Email:</b>
+                <t t-out="o.member_id.email or ''"/>
+                <br/>
+                <br/>
+                <b>Phone No:</b>
+                <t t-out="o.phone or ''"/>
+                <br/>
+                <br/>
+                <b>Membership Start Date:</b>
+                <t t-out="o.membership_date or ''"/>
+                <br/>
+            </div>
+        </center>
+
+        <div t-attf-class="footer o_company_#{company.id}_layout">
+            <div t-if="company" class="text-center">
+                <span t-out="company.partner_id.website"/>
+            </div>
+        </div>
+    </template>
+
+    <!--HTML Container Member Report-->
+    <template id="report_library_member">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="ak_library_management.custom_external_layout_library_member"/>
+            </t>
+        </t>
+    </template>
+
+    <!--Report Action of Member Report-->
+    <record id="action_report_library_member" model="ir.actions.report">
+        <field name="name">Member Report</field>
+        <field name="model">library.member</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">ak_library_management.report_library_member</field>
+        <field name="report_file">ak_library_management.report_library_member</field>
+        <field name="binding_model_id" ref="model_library_member"/>
+        <field name="binding_type">report</field>
+    </record>
+</odoo>

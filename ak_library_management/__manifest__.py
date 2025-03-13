@@ -30,6 +30,8 @@
         'views/res_users_views.xml',
         'views/library_menuitem.xml',
         'data/mail_template_data.xml',
+        'report/library_library_report_template.xml',
+        'report/library_member_report_template.xml',
     ],
     'installable': True,
     'application': True,

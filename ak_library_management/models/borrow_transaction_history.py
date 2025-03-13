@@ -108,13 +108,12 @@ class BorrowTransactionHistory(models.Model):
         :params: None
         :return: None
         """
-        all_record = self.search([])
-        for record in all_record:
-            alert_date = record.borrow_end_date
-            check_status = [rec.status == 'borrowed' for rec in record.books]
-            if alert_date <= date.today() and any(check_status):
-                template = self.env.ref('ak_library_management.email_template_library_book_reminder')
-                template.send_mail(record.id, force_send=True)
+        all_books = self.search([('borrow_end_date', '<=', date.today()),
+                                 ('books.status', '=', 'borrowed')])
+        for rec in all_books:
+            mail_template = self.env.ref(
+                'ak_library_management.email_template_library_book_reminder')
+            mail_template.send_mail(rec.id, force_send=True)
 
     def automated_action_overdue_books(self):
         """

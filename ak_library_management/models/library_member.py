@@ -35,18 +35,19 @@ class LibraryMember(models.Model):
 
     def action_send_renewal_mail(self):
         """
-        this action button method for sending renewl membership mail to the library member.
+        only librarian allow to send membership renewal emails to library members.
+        :params: None
+        :return: mail compose wizard
         """
         mail_template = self.env.ref('ak_library_management.email_template_renewal_membership')
-        context = {
-            'default_template_id': mail_template.id
-        }
         if self.env.user.is_librarian:
             return {
                 'type': 'ir.actions.act_window',
                 'view_mode': 'form',
                 'res_model': 'mail.compose.message',
                 'target': 'new',
-                'context': context,
+                'context': {
+                    'default_template_id': mail_template.id
+                },
             }
-        raise ValidationError("Only Librarian can send email!!! Contact to the Librarian.")
+        raise ValidationError("Only librarian have access this button!!!")
