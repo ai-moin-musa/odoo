@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
-from datetime import date, timedelta
+from datetime import datetime, date, timedelta
 from odoo import models, fields, api
-from odoo.exceptions import ValidationError
+from odoo.exceptions import ValidationError, UserError
 
 
 class BorrowTransactionHistory(models.Model):
@@ -87,35 +87,39 @@ class BorrowTransactionHistory(models.Model):
                     return action
 
                 action['context'][
-                    'default_message'] = (f"Are you sure you want to"
-                                          f"allow borrowing more than 5 books"
-                                          f"for this customer?")
+                    'default_message'] = ("Are you sure you want to"
+                                          "allow borrowing more than 5 books"
+                                          "for this customer?")
                 return action
 
             # decrease the quantity of the books when transaction is completed
-            for record in self.books:
-                if record.qty_available:
-                    record.qty_available -= 1
+            for rec in self.books:
+                if rec.qty_available:
+                    product_id = self.env['product.product'].search([('name', '=', rec.name),
+                                                                     ('default_code', '=', rec.default_code)])
+                    loc = self.env['stock.quant'].search([('product_id.name', '=', rec.name)], limit=1)
+                    self.env['stock.quant']._update_available_quantity(product_id, loc.location_id,
+                                                                       quantity=-1)
 
     def book_returned_reminder(self):
         """
-        this method used for schedule action which is send notification of reminder
+        this method used for schedule action which is send notification on reminder
         book return date.
         :params: None
         :return: None
         """
         all_record = self.search([])
         for record in all_record:
-            alert_date = record.borrow_end_date - timedelta(days=2)
-            if date.today() == alert_date:
-                self.env['bus.bus']._sendone(record.customer_id, 'simple_notification', {
-                    'type': 'warning',
-                    'message': f"Reminder: your book return date is {record.borrow_end_date}",
-                })
+            alert_date = record.borrow_end_date
+            check_status = [rec.status == 'borrowed' for rec in record.books]
+            if alert_date <= date.today() and any(check_status):
+                template = self.env.ref('ak_library_management.email_template_library_book_reminder')
+                template.send_mail(record.id, force_send=True)
 
-    def automated_action(self):
+    def automated_action_overdue_books(self):
         """
-        This method used for automated action to check the overdue books.
+        This method used for customer cant borrow book without returning old books
+        which is overdue of return date.
         :params: None
         :return: None
         """
@@ -124,6 +128,6 @@ class BorrowTransactionHistory(models.Model):
             for book in rec.books:
                 if rec.borrow_end_date < date.today() and book.status == "borrowed":
                     raise ValidationError(f"{rec.customer_id.name}"
-                                          f" with overdue books "
-                                          f"cannot new ones until"
+                                          f"with overdue books"
+                                          f"cannot borrow new ones until"
                                           f"you return the overdue items.")

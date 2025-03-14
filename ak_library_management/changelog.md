@@ -66,3 +66,11 @@ It should not be visible if no products have been created yet.
 
 ## [version - 2.8.0]()
 - added feature to show notification when bulk book record created in multiple books form
+
+## [version - 2.9.0]()
+- added feature to Automatically send an email notification to library members when they fail to return a book on
+time.
+
+## [version - 3.0.0]()
+- added feature to Allow librarians to manually send membership renewal emails to library members using a mail
+compose wizard.

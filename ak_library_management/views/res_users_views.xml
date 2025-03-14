@@ -9,6 +9,7 @@
                 <xpath expr="//field[@name='login']" position="after">
                     <group>
                         <field name="is_manager"/>
+                        <field name="is_librarian"/>
                     </group>
                 </xpath>
             </field>

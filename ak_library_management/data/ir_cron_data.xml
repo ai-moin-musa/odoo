@@ -7,7 +7,7 @@
             <field name="model_id" ref="model_borrow_transaction_history"/>
             <field name="state">code</field>
             <field name="code">model.book_returned_reminder()</field>
-            <field name="interval_type">days</field>
+            <field name="interval_type">weeks</field>
             <field name="interval_number">1</field>
         </record>
 
@@ -33,7 +33,7 @@
             <field name="name">Due Date Check</field>
             <field name="model_id" ref="model_borrow_transaction_history"/>
             <field name="state">code</field>
-            <field name="code">record.automated_action()</field>
+            <field name="code">record.automated_action_overdue_books()</field>
         </record>
 
         <!--this automated action for checking due date of the borrow transaction history model-->

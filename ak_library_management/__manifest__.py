@@ -29,6 +29,7 @@
         'wizard/borrow_books_checklist_wizard_views.xml',
         'views/res_users_views.xml',
         'views/library_menuitem.xml',
+        'data/mail_template_data.xml',
     ],
     'installable': True,
     'application': True,
