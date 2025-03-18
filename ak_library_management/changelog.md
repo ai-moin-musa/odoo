@@ -1,76 +1,20 @@
-## [Version 1.1.0]()
-### Create a new Transient Model, Menuitem, and Views:
+## [18.0.1.0.1] - 2025-03-08 | constraints mail & activity
 
-- Book Names (Text field): A comma-separated list of book names (e.g., Book1, Book2, Book3).
-- Author (Many2one): A required field linking to the res.partner model for selecting an author. This field must be mandatory for creating products.
+- Add proper docstring and create wizard directory
+- changes on mail template
+- Add mail composer on borrow transaction history
+- optimize the domain
+- Add field in user model
 
-## [Version 1.2.0]()
-### Create Two Buttons
+## [18.0.1.0.3] - 2025-03-10 | Borrow Book Requirement
 
-- Create Products:
-This button will create new `product.template` records based on the book names provided in the Book Names field.
-The button should only create new products that do not already exist, preventing duplicates.
+- changes and optimized some method.
 
+## [18.0.1.1.0] - 2025-03-13 | Library Report with Custom Layout
 
-- Revert Changes:
-This button will be visible only after products have been created using this Bulk Upload Books Record.
-If clicked, it will delete all products created from the current Bulk Upload Books Record session.
-It should not be visible if no products have been created yet.
+- add dynamic report and html container
+- add report action for both member and library location file
 
-## [Version 1.3.0]()
-### Adding Smart Button for Products Count
-- [Prod Count] Products: This smart button will display the count of books created from this model.
-- It will redirect the user to the list of products created from this Bulk Upload Books Record.
-- The button will only be visible if products have been created using this Bulk Upload Books Record.
-- If no products are created, the button will not appear. If only one product is created from this Bulk Upload Books Record then this button will redirect the user to the form view of that product.
+## [18.0.1.1.1] - 2025-03-18 | Mail Template 
 
-## [Version 2.0.0]()
-### Adding Depends for method overriding assignment
-- stock (Inventory) added in depends list.
-
-## [Version 2.1.0]()
-### customize the sale order view
-- Adding the approve and reject button for manager.
-- created wizard view for validation message.
-
-## [Version 2.2.0]()
-### Adding fields in contact model (res.partner)
-- added is_manager field for contact user is manager or not.
-- added not_trust_worthy field for customer is trustable for this transaction.
-
-## [Versionj 2.2.1]()
-### Created Borrow Transaction History Model.
-
-## [Version 2.3.0]()
-### Created views for borrow transaction history model.
-
-## [Version 2.3.1]()
-### Created the menus for accessing the 'borrow_transaction_history' model views.
-
-## [Version 2.4.0]()
-### Created borrow books checklist wizard (views/model)
-- for showing dynamics warning
-
-## [version - 2.5.0]()
-- create borrow books checklist wizard and its view
-
-## [version - 2.5.0]()
-- add librarian and sql constraints fields in the library
-
-## [version - 2.6.0]()
-- added chatter into the library
-- added functionality to send borrow and return custom chatter message
-
-## [version - 2.7.0]()
-- added functionality to automatic created activity for reminder of returning (books) day
-
-## [version - 2.8.0]()
-- added feature to show notification when bulk book record created in multiple books form
-
-## [version - 2.9.0]()
-- added feature to Automatically send an email notification to library members when they fail to return a book on
-time.
-
-## [version - 3.0.0]()
-- added feature to Allow librarians to manually send membership renewal emails to library members using a mail
-compose wizard.
+- change and optimized some method codes and xml files.

@@ -13,13 +13,14 @@
                         Hello,
                         <t t-out="object.customer_id.name or ''"/>
                         <br/>
-                        <p style="font-weight: bold">Title:
-                            <t t-out="[book.name for book in object.books]"/>
+                        <p style="font-weight: bold">Books which are you borrowed:
+                            <t t-out="','.join([book.name for book in object.books])"/>
                         </p>
                         <br/>
                         Your book Due Date was
-                        <t t-out="object.borrow_end_date or ''"/>
+                        <t t-out="object.borrow_end_date or ''"/>,
                         <t/>
+                        <br/>
                         so please returned the above books.
                         <br/>
                         Thank You......
@@ -41,13 +42,15 @@
                         Dear,
                         <t t-out="object.member_id.name or ''"/>
                         <br/>
+                        <br/>
                         <p style="font-weight:bold">Member Details:</p>
                         <b>Name:</b> <t t-out="object.member_id.name or ''"/> <br/>
                         <b>Email:</b> <t t-out="object.member_id.email or ''"/><br/>
                         <b>Phone No:</b> <t t-out="object.phone or ''"/><br/>
                         <b>Membership Start Date:</b> <t t-out="object.membership_date or ''"/>
                         <br/>
-                        Please renew your Membership.
+                        <br/>
+                         <t t-out="object.member_id.name or ''"/>, Please renew your Membership.
                         <br/>
                         Thank You.....
                     </p>
