@@ -23,7 +23,7 @@
                         <br/>
                         so please returned the above books.
                         <br/>
-                        Thank You......
+                        Thank You.
                     </p>
                 </div>
             </field>
@@ -52,7 +52,7 @@
                         <br/>
                          <t t-out="object.member_id.name or ''"/>, Please renew your Membership.
                         <br/>
-                        Thank You.....
+                        Thank You.
                     </p>
                 </div>
             </field>

@@ -10,8 +10,9 @@
     Manges books with its categories.
     Manges member at library.
     """,
-    'depends': ['stock', 'contacts', 'sale_management', 'base_automation'],
+    'depends': ['stock', 'contacts', 'sale_management', 'base_automation', 'hr'],
     'data': [
+        'security/security.xml',
         'security/ir.model.access.csv',
         'views/library_book_views.xml',
         'views/library_book_category_views.xml',
@@ -29,9 +30,11 @@
         'wizard/borrow_books_checklist_wizard_views.xml',
         'views/res_users_views.xml',
         'views/library_menuitem.xml',
-        'data/mail_template_data.xml',
         'report/library_library_report_template.xml',
         'report/library_member_report_template.xml',
+        'data/mail_template_data.xml',
+        'views/stock_warehouse_views.xml',
+        'views/res_config_settings_views.xml'
     ],
     'installable': True,
     'application': True,

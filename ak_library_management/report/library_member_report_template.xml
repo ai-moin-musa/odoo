@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <!--html container of custom library member report-->
     <template id="report_library_member">
@@ -7,7 +8,6 @@
             </t>
         </t>
     </template>
-
 
     <!--Member Report Template-->
     <template id="custom_external_layout_library_member">

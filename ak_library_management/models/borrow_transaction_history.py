@@ -21,13 +21,20 @@ class BorrowTransactionHistory(models.Model):
     borrow_end_date = fields.Date(string="Borrow End Date", required=True)
     is_member = fields.Boolean(related="customer_id.is_member")
     deposit_amount = fields.Float(string="Deposit Amount")
+    is_active = fields.Boolean(compute="_compute_active_transaction",store=True)
+
+    @api.depends('borrow_end_date')
+    def _compute_active_transaction(self):
+        """
+        check the transaction is active or not.
+        """
+        for rec in self.search([]):
+            rec.is_active = rec.borrow_end_date >= date.today()
 
     @api.constrains('borrow_start_date', 'borrow_end_date')
     def _check_dates(self):
         """
         this method checks the end date is not before the start date
-        :params: None
-        :return: None
         """
         if any(self.filtered(lambda rec: rec.borrow_start_date > rec.borrow_end_date)):
             raise ValidationError("Start Date must be before End Date.'")
@@ -35,7 +42,7 @@ class BorrowTransactionHistory(models.Model):
     def action_confirm(self):
         """
         this method for confirm button when user clicked on
-        the confirm button checks the some condition on basis
+        the confirm button checks some condition on basis
         of the customer and books he borrowed and return wizard
         with different messages based upon condition.
         :params: None
@@ -105,12 +112,10 @@ class BorrowTransactionHistory(models.Model):
         """
         this method used for schedule action which is send notification on reminder
         book return date.
-        :params: None
-        :return: None
         """
-        all_books = self.search([('borrow_end_date', '<=', date.today()),
+        borrow_transaction_book_ids = self.search([('borrow_end_date', '<=', date.today()),
                                  ('books.status', '=', 'borrowed')])
-        for rec in all_books:
+        for rec in borrow_transaction_book_ids:
             mail_template = self.env.ref(
                 'ak_library_management.email_template_library_book_reminder')
             mail_template.send_mail(rec.id, force_send=True)
@@ -119,8 +124,6 @@ class BorrowTransactionHistory(models.Model):
         """
         This method used for customer cant borrow book without returning old books
         which is overdue of return date.
-        :params: None
-        :return: None
         """
         recs = self.search([('customer_id.id', "=", self.customer_id.id)])
         for rec in recs:
