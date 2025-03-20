@@ -18,3 +18,12 @@
 ## [18.0.1.1.1] - 2025-03-18 | Mail Template 
 
 - change and optimized some method codes and xml files.
+
+## [18.0.1.1.2] - 2025-03-20 | Groups, Access Rights, Record Rules
+
+- add warehouse xml and py file
+- add library module in settings and add field
+- add groups and record rules
+- add record rules for restrict access for some users
+- add two compute fields in borrow transaction history model
+- changes in access rights csv file

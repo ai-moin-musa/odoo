@@ -1,12 +1,14 @@
 # -*- coding: utf-8 -*-
-from datetime import datetime, date, timedelta
+from datetime import date
 from odoo import models, fields, api
-from odoo.exceptions import ValidationError, UserError
+from odoo.exceptions import ValidationError
 
 
 class BorrowTransactionHistory(models.Model):
     _name = "borrow.transaction.history"
     _description = "Borrow Books Transaction History"
+    _rec_name = 'customer_id'
+    _inherit = 'res.config.settings'
 
     customer_id = fields.Many2one(comodel_name="res.partner", string="Customer")
     books = fields.Many2many(
@@ -22,6 +24,21 @@ class BorrowTransactionHistory(models.Model):
     is_member = fields.Boolean(related="customer_id.is_member")
     deposit_amount = fields.Float(string="Deposit Amount")
     is_active = fields.Boolean(compute="_compute_active_transaction",store=True)
+    is_higher_than_limit = fields.Boolean(compute='_compute_more_than_borrow_limit', store=True)
+
+    @api.depends('books')
+    def _compute_more_than_borrow_limit(self):
+        """
+        this method used for checking customer open borrow transaction or not and restricts
+        customer to borrow books more than borrow limit
+        """
+        for rec in self:
+            rec.is_higher_than_limit = False
+            records = self.search([('customer_id.id', "=", self.customer_id.id)])
+            books_name = [book.name for rec in records
+                          for book in rec.books]
+            if len(books_name) > rec.borrow_limit:
+                rec.is_higher_than_limit = True
 
     @api.depends('borrow_end_date')
     def _compute_active_transaction(self):
