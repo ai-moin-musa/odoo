@@ -28,7 +28,7 @@ class BorrowTransactionHistory(models.Model):
         """
         check the transaction is active or not.
         """
-        for rec in self.search([]):
+        for rec in self:
             rec.is_active = rec.borrow_end_date >= date.today()
 
     @api.constrains('borrow_start_date', 'borrow_end_date')

@@ -60,13 +60,15 @@
                     </div>
                 </div>
 
-                <table class="o_has_total_table table o_main_table" style="margin-top:15px">
-                    <tr>
-                        <th name="th_book" class="text-start text-nowrap">Book</th>
-                        <th name="th_price" class="text-start text-nowrap">Price</th>
-                        <th name="th_date" class="text-start text-nowrap">Published Date</th>
-                        <th name="th_author" class="text-start text-nowrap">Author</th>
-                    </tr>
+                <table class="o_has_total_table table o_main_table table-borderless" style="margin-top:15px">
+                    <thead>
+                        <tr>
+                            <th name="th_book" class="text-start text-nowrap">Book</th>
+                            <th name="th_price" class="text-start text-nowrap">Price</th>
+                            <th name="th_date" class="text-start text-nowrap">Published Date</th>
+                            <th name="th_author" class="text-start text-nowrap">Author</th>
+                        </tr>
+                    </thead>
 
                     <tbody class="library_tbody">
                         <t t-foreach="doc.product_ids" t-as="book">
