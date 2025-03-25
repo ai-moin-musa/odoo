@@ -27,3 +27,7 @@
 - add record rules for restrict access for some users
 - add two compute fields in borrow transaction history model
 - changes in access rights csv file
+
+## [18.0.1.1.3] - 2025-03-21 | Borrow Books Requirement
+
+- Added Borrow Transaction History Wizard

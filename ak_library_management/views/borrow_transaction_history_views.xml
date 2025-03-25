@@ -1,6 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data>
+        <!--search view for borrow transaction history-->
+        <record id="borrow_transaction_history_view_search" model="ir.ui.view">
+            <field name="name">borrow.transaction.history.view.search</field>
+            <field name="model">borrow.transaction.history</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="customer_id"/>
+                    <group>
+                        <filter name="group_by_end_date"
+                                context="{'group_by':'borrow_end_date'}"
+                                string="End Date Of Returning Book"/>
+                    </group>
+                </search>
+            </field>
+        </record>
         <!--This form view for borrow transaction history -->
         <record id="borrow_transaction_history_view_form" model="ir.ui.view">
             <field name="name">borrow.transaction.history.view.form</field>
@@ -16,10 +31,6 @@
                             <field name="deposit_amount" invisible="is_member"/>
                         </group>
                     </sheet>
-                    <footer>
-                        <button name="action_confirm" string="Confirm" type="object"/>
-                        <button name="cancel" special="cancel" string="Cancel"/>
-                    </footer>
                 </form>
             </field>
         </record>

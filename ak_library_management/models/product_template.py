@@ -60,8 +60,9 @@ class ProductTemplate(models.Model):
         """
         return {
             'type': 'ir.actions.act_window',
-            'name': 'Borrow Books Transaction History',
-            'res_model': 'borrow.transaction.history',
+            'name': 'Borrow Books Transaction History Wizard',
+            'res_model': 'borrow.transaction.history.wizard',
+            'view_id': self.env.ref("ak_library_management.borrow_transaction_history_wizard_view_form").id,
             'target': 'new',
             'view_mode': 'form',
         }
