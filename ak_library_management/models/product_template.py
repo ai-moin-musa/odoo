@@ -99,14 +99,7 @@ class ProductTemplate(models.Model):
         :return: None
         :rtype: None
         """
-        # check the returning day
-        if self.status == 'returned' and date.today() <= self.due_date:
-            raise ValidationError(f"You can not Returned the Book before {self.due_date}")
-        elif self.status:
-            self.env['bus.bus']._sendone(self.env.user.partner_id, 'simple_notification', {
-                'type': 'warning',
-                'message': f"{self.name} book status is changed to {self.status}",
-            })
+
 
         # creating schedule activity and send log message for borrow books and return books
         if self.status in ('borrowed', 'returned'):

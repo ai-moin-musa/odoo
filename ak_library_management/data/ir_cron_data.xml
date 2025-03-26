@@ -11,20 +11,27 @@
             <field name="interval_number">1</field>
         </record>
 
+
+        <!--This is Scheduled Action for reminder of Book returned date-->
+        <record id="schedule_action_book_return_reminder" model="ir.cron">
+            <field name="name">Borrow Transaction Book Return Reminder</field>
+            <field name="model_id" ref="model_borrow_transaction_history"/>
+            <field name="state">code</field>
+            <field name="code">model.action_book_returned_reminder_days()</field>
+            <field name="interval_type">days</field>
+            <field name="interval_number">1</field>
+        </record>
+
         <!--This is server action for change to the status returned and notify the customer.-->
         <record id="ir_actions_borrow_transaction_history" model="ir.actions.server">
-            <field name="name">Change Book status to returned</field>
+            <field name="name">Borrow Transaction Mark Books as Returned</field>
             <field name="model_id" ref="model_borrow_transaction_history"/>
             <field name="binding_model_id" ref="model_borrow_transaction_history"/>
             <field name="binding_view_types">list, form</field>
             <field name="state">code</field>
             <field name="code">
-                for rec in records:
-                    for book in rec.books:
-                        env['bus.bus']._sendone(rec.customer_id,'simple_notification',{
-                            'type': 'warning',
-                            'message': f"{rec.customer_id.name} your return {book.name} book has been recorded",
-                        })
+                for record in records:
+                    record.action_mark_books_as_returned()
             </field>
         </record>
 
@@ -33,12 +40,12 @@
             <field name="name">Due Date Check</field>
             <field name="model_id" ref="model_borrow_transaction_history"/>
             <field name="state">code</field>
-            <field name="code">record.automated_action_overdue_books()</field>
+            <field name="code">record.action_overdue_books()</field>
         </record>
 
         <!--this automated action for checking due date of the borrow transaction history model-->
         <record id="automated_action_borrow_transaction_history" model="base.automation">
-            <field name="name">Due Date Check</field>
+            <field name="name">Prevent Over-Borrowing</field>
             <field name="model_id" ref="model_borrow_transaction_history"/>
             <field name="trigger">on_create_or_write</field>
             <field name="action_server_ids" eval="[(4,ref('server_actions_borrow_transaction_history'))]"/>

@@ -31,3 +31,8 @@
 ## [18.0.1.1.3] - 2025-03-21 | Borrow Books Requirement
 
 - Added Borrow Transaction History Wizard
+
+## [18.0.1.1.4] - 2025-03-26 | Scheduled Actions, Server Actions, Automated Actions
+
+- modify scheduled action, server action and automated action in borrow transaction history.
+- optimized borrow transaction history model methods.
