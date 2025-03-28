@@ -36,3 +36,15 @@
 
 - modify scheduled action, server action and automated action in borrow transaction history.
 - optimized borrow transaction history model methods.
+
+## [18.0.1.1.5] - 2025-03-27 | Modify Existing/Base Qweb Reports
+
+- add new invoice report template xml file.
+- inherit and extended invoice report template.
+- change field type in Account Move Line model.
+
+## [18.0.1.1.6] - 2025-03-28 | Dynamic Http Controller
+
+- add controller contact and contact details
+- add kanban view template for contact
+- add contact details template 

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="contacts_template" name="Contacts List">
+        <t t-call="website.layout">
+            <div class="oe_structure">
+                <div class="container">
+                    <h3>Contacts</h3>
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>Contact Names</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-foreach="records" t-as="contacts">
+                                <tr>
+                                    <td>
+                                        <a t-att-href="'/contact/%s' % contacts.id">
+                                            <t t-out="contacts.name"/>
+                                        </a>
+                                    </td>
+                                </tr>
+                            </t>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <template id="contact_details_template" name="Contact Details">
+         <t t-call="website.layout">
+            <div class="container">
+                <h4>Contact Details</h4>
+                <div class="row">
+                    <div class="col-md-6 offset-md-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title"><t t-out="contact.name"/></h5>
+                                <p><strong>Email:</strong> <t t-out="contact.email or 'N/A'"/></p>
+                                <p><strong>Phone:</strong> <t t-out="contact.phone or 'N/A'"/></p>
+                                <p><strong>Address:</strong> <t t-out="contact.contact_address or 'N/A'"/></p>
+                                <p><strong>Company:</strong> <t t-out="contact.company_id.name or 'N/A'"/></p>
+
+                                <a href="/contacts" class="btn btn-secondary">Back to Contacts List</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <data>
+        <record id="web_contacts_menu" model="website.menu">
+            <field name="name">Contacts</field>
+            <field name="url">/contacts</field>
+            <field name="parent_id" ref="website.main_menu"/>
+        </record>
+    </data>
+</odoo>

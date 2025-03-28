@@ -2,17 +2,6 @@
 <odoo>
     <data noupdate="1">
         <!--This is Scheduled Action for reminder of Book returned date-->
-        <record id="ir_cron_book_returned_reminder" model="ir.cron">
-            <field name="name">Book Return Date Reminder</field>
-            <field name="model_id" ref="model_borrow_transaction_history"/>
-            <field name="state">code</field>
-            <field name="code">model.book_returned_reminder()</field>
-            <field name="interval_type">weeks</field>
-            <field name="interval_number">1</field>
-        </record>
-
-
-        <!--This is Scheduled Action for reminder of Book returned date-->
         <record id="schedule_action_book_return_reminder" model="ir.cron">
             <field name="name">Borrow Transaction Book Return Reminder</field>
             <field name="model_id" ref="model_borrow_transaction_history"/>
@@ -49,6 +38,16 @@
             <field name="model_id" ref="model_borrow_transaction_history"/>
             <field name="trigger">on_create_or_write</field>
             <field name="action_server_ids" eval="[(4,ref('server_actions_borrow_transaction_history'))]"/>
+        </record>
+
+        <!--This is Scheduled Action for reminder of Book returned date-->
+        <record id="ir_cron_book_returned_reminder" model="ir.cron">
+            <field name="name">Book Return Date Reminder</field>
+            <field name="model_id" ref="model_borrow_transaction_history"/>
+            <field name="state">code</field>
+            <field name="code">model.book_returned_reminder()</field>
+            <field name="interval_type">weeks</field>
+            <field name="interval_number">1</field>
         </record>
 
     </data>
