@@ -50,3 +50,19 @@ It should not be visible if no products have been created yet.
 ## [Version 2.4.0]()
 ### Created borrow books checklist wizard (views/model)
 - for showing dynamics warning
+
+## [version - 2.5.0]()
+- create borrow books checklist wizard and its view
+
+## [version - 2.5.1]()
+- add librarian and sql constraints fields in the library
+
+## [version - 2.6.1]()
+- added chatter into the library
+- added functionality to send borrow and return custom chatter message
+
+## [version - 2.7.1]()
+- added functionality to automatic created activity for reminder of returning (books) day
+
+## [version - 2.8.1]()
+- added feature to show notification when bulk book record created in multiple books form

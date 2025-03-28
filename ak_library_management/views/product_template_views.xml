@@ -12,7 +12,7 @@
                 <xpath expr="//header" position="inside">
                     <button name="mark_as_available" string="Mark as Available" invisible="status == 'available'"
                             type="object"/>
-                    <button name="mark_as_borrowed" string="Mark as Borrowed"
+                    <button name="mark_as_borrowed" string="Mark as Borrowed" invisible="status == 'borrowed'"
                             type="object"/>
                     <!--adding this button for borrow transaction history model for redirect to popup wizard-->
                     <button name="action_borrow_books_wizard" string="Borrow Books" type="object"/>

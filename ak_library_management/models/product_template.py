@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
+from datetime import date, timedelta
 from odoo import models, fields, api
 from odoo.exceptions import ValidationError
-from datetime import date,timedelta
 
 
 class ProductTemplate(models.Model):
@@ -24,7 +24,8 @@ class ProductTemplate(models.Model):
     status = fields.Selection(
         selection=[('available', 'Available'), ('borrowed', 'Borrowed'), ('returned', 'Returned')],
         string="Status",
-        default="available",tracking=True)
+        tracking=True)
+    due_date = fields.Date(default=date.today())
 
     def mark_as_available(self):
         """This function change or set the status of the book availability"""
@@ -32,18 +33,7 @@ class ProductTemplate(models.Model):
 
     def mark_as_borrowed(self):
         """This is method for status change available to borrowed"""
-        if self.status == "borrowed":
-            return None
         self.status = "borrowed"
-        date_deadline = date.today() + timedelta(days=10)
-        return super().activity_schedule(date_deadline=date_deadline,
-                                         summary=f'book borrowed by '
-                                                 f'{self.env.user.name} and return date '
-                                                 f'{date_deadline}')
-    def mark_as_returned(self):
-        """This is method for status change to the returned"""
-        self.status = "returned"
-        self.message_post(body=f'{self.env.user.name} is return book. Date: {date.today()}')
 
     @api.model_create_multi
     def create(self, vals_list):
@@ -88,9 +78,33 @@ class ProductTemplate(models.Model):
             else:
                 rec.display_name = rec.name
 
-    @api.onchange('status')
-    def _check_return_book(self):
+    @api.constrains('status')
+    def _check_status(self):
+        """
+        This _check_status constraints method check all the
+        conditions and sends notifications and logs messages
+        """
+        # check the returning day
+        if self.status == 'returned' and date.today() <= self.due_date:
+            raise ValidationError(f"You can not Returned the Book before {self.due_date}")
+        elif self.status != False:
             self.env['bus.bus']._sendone(self.env.user.partner_id, 'simple_notification', {
                 'type': 'warning',
                 'message': f"{self.name} book status is changed to {self.status}",
             })
+
+        # creating schedule activity and send log message for borrow books and return books
+        if self.status in ('borrowed','returned'):
+            self.message_post(body=f'{self.env.user.name} is '
+                                   f'{self.status} book. Date: {date.today()}')
+            if self.status == 'borrowed':
+                self.due_date = date.today() + timedelta(days=10)
+                self.activity_schedule(
+                    act_type_xmlid="mail.mail_activity_data_todo",
+                    summary="Book Return Date Reminder",
+                    note=(f"'{self.env.user.name}' borrowed "
+                          f"{self.name} and return date is "
+                          f"{self.due_date}."),
+                    user_id=self.env.user.id,
+                    date_deadline=self.due_date
+                )

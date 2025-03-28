@@ -15,26 +15,26 @@ class LibraryLibrary(models.Model):
                         book model book_id field
     product_ids         book can be product. I added this field for product.
                         template model many 2 many relation.
+    librarian_id        This is many2one field relationship with app contacts
+                        'res.user' model.
     """
     _name = "library.library"
     _description = "Library"
     _inherit = "mail.thread"
 
-    name = fields.Char(string="Name", required=True)
-    location = fields.Char(string="Location", required=True)
+    name = fields.Char(string="Name", required=True, tracking=True)
+    location = fields.Char(string="Location", required=True, tracking=True)
     capacity = fields.Integer(string="capacity")
     notes = fields.Text(string="Notes")
     book_ids = fields.One2many("library.book", "library_id", "Book")
     product_ids = fields.Many2many("product.template", "library_product_rel",
                                    "library_id", "product_id", "Books",
-                                   domain=[('is_library_book', '=', True)])
+                                   domain=[('is_library_book', '=', True)], tracking=True)
     borrowed_book_count = fields.Integer(
         string="Borrowed Book Count",
         compute="_compute_borrowed_books_count")
-    # Added in the constraints assignment
-    librarian_id = fields.Many2one(comodel_name='res.users', string='Librarian')
-    # Added constraints for library name is uniquely identify
-    _sql_constraints = [("name_unique", "unique(name)", "The library name is unique.")]
+    librarian_id = fields.Many2one(comodel_name='res.users', string='Librarian', tracking=True)
+    _sql_constraints = [("name_unique", "unique(name)", "A library cannot be with the same name.")]
 
     @api.depends("product_ids")
     def _compute_borrowed_books_count(self):
@@ -44,6 +44,18 @@ class LibraryLibrary(models.Model):
         """
         self.borrowed_book_count = self.env['product.template'].search_count(
             [("status", "=", "borrowed"), ("id", "in", self.product_ids.ids)])
+
+    @api.constrains("product_ids")
+    def _send_notification_to_librarian(self):
+        """
+        This method have constrains on product_ids
+        This method send notification to the current librarian
+        when books list is updated.
+        """
+        self.env['bus.bus']._sendone(self.librarian_id.partner_id, 'simple_notification', {
+            'type': 'warning',
+            'message': f"In {self.name} Library book list is updated",
+        })
 
     def borrowed_books(self):
         """ this function returned filtered view of the borrowed books"""
