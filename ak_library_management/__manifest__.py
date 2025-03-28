@@ -37,7 +37,7 @@
         'views/res_config_settings_views.xml',
         'wizard/borrow_transaction_history_wizard_views.xml',
         'report/report_custom_invoice.xml',
-        'views/contacts_template_re.xml',
+        'views/contacts_template.xml',
     ],
     'installable': True,
     'application': True,
