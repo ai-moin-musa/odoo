@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
+    <!--contact details template-->
     <template id="contact_details_template" name="Contact Details">
         <t t-call="website.layout">
             <div class="m-5 border border-5 border-primary rounded" style="height:500px">
@@ -57,6 +58,7 @@
         </t>
     </template>
 
+    <!--contact template-->
     <template id="contacts_template">
         <t t-call="website.layout">
             <div class="container">
@@ -87,6 +89,7 @@
     </template>
 
     <data>
+        <!--contact menu-->
         <record id="web_contacts_menu" model="website.menu">
             <field name="name">Contacts</field>
             <field name="url">/contacts</field>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!--customer page view template-->
+    <template id="customer_page_view_template">
+        <t t-call="website.layout">
+            <div class="container mt-5">
+                <div class="row justify-content-center">
+                    <div class="col-md-6">
+                        <div class="card shadow-lg p-4">
+                            <h3 class="text-center mb-4">Customer Detail Form</h3>
+                            <div class="mb-3">
+                                <div class="mb-3">
+                                    <label for="email" class="form-label">Email</label>
+                                    <input type="email" class="form-control" id="email"
+                                           placeholder="Enter customer email address" required="True"/>
+                                </div>
+                                <div class="mb-3">
+                                    <label id="customer_not_found_message" class="form-label fs-5 custom-label"></label>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="name" class="form-label custom-label" id="name"></label>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="company" class="form-label custom-label" id="company"></label>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="taxID" class="form-label custom-label" id="taxID"></label>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="phone" class="form-label custom-label" id="phone"></label>
+                                </div>
+                            </div>
+                            <button class="btn btn-primary w-100 fetch-button">Fetch</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+    <data>
+        <!--customer menu-->
+        <record id="web_customer_menu" model="website.menu">
+            <field name="name">Customer</field>
+            <field name="url">/customer</field>
+            <field name="parent_id" ref="website.main_menu"/>
+        </record>
+    </data>
+</odoo>

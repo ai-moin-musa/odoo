@@ -47,4 +47,13 @@
 
 - add controller contact and contact details
 - add kanban view template for contact
-- add contact details template 
+- add contact details template
+
+## [18.0.1.1.7] - 2025-04-01 | Json Controller
+
+- Create a template for display customer details
+- Create http controller and create JSON controller for fetching customer detail based on customer email
+- Create js file for use rpc to call the JSON route and retrieve customer details.
+
+## [18.0.1.1.8] - 2025-04-01 | Front-end - Practical Task (POS 18 products section)
+- add and inherit product card and product screen template.

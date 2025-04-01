@@ -1,1 +1,1 @@
-from . import contacts_controller
+from . import main
