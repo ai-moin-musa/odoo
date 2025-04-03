@@ -30,6 +30,7 @@ class ProductTemplate(models.Model):
         string="Status",
         tracking=True)
     due_date = fields.Date(default=date.today())
+    product_image_ids = fields.One2many(comodel_name='product.image', inverse_name='product_tmpl_id')
 
     def mark_as_available(self):
         """This function change or set the status of the book availability"""

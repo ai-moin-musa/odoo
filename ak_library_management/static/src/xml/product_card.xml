@@ -30,7 +30,7 @@
         </xpath>
 
         <xpath expr="//div[contains(@class,'product-name')]" position="after">
-            <span style="color:#714B67; font-weight:bold; padding:0 0.5rem 0.5rem; font-size:12px;">
+            <span style="font-weight:bold; padding:0 0.5rem 0.5rem; font-size:12px;" class="text-primary">
                 <t t-out="props.price"/>
             </span>
         </xpath>
