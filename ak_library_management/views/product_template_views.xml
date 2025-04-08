@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<data>
-    <odoo>
+<odoo>
+    <data>
         <!--product form view-->
         <record id="product_template_form_view" model="ir.ui.view">
             <field name="name">product.template.product.form</field>
@@ -46,13 +46,29 @@
                 <xpath expr="//field[@name='standard_price']" position="attributes">
                     <attribute name="readonly">sale_ok == True</attribute>
                 </xpath>
+                <xpath expr="//sheet[@name='product_form']//notebook//group[@name='purchase']" position="before">
+                    <group>
+                        <field name="vendor_on_variants"/>
+                    </group>
+                </xpath>
             </field>
         </record>
-
+        <!--extend the product_template_form_view and add inside of media images group-->
+        <record id="product_template_form_view_inherited" model="ir.ui.view">
+            <field name="name">product.template.form.view.inherited</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//page[@name='sales']/group[@name='sale']/group[@name='product_template_images']"
+                       position="inside">
+                    <field name="is_images_downloadable"/>
+                </xpath>
+            </field>
+        </record>
         <!--Update the window action for ‘Quotations’ in the sales module and modified the action-->
         <record id="sale.action_quotations_with_onboarding" model="ir.actions.act_window">
             <field name="name">Draft Quotations</field>
             <field name="view_mode">list</field>
         </record>
-    </odoo>
-</data>
+    </data>
+</odoo>

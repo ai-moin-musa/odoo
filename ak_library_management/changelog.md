@@ -61,3 +61,6 @@
 ## [18.0.1.1.9] - 2025-04-02 | Front-end - Practical Task (Download Product Images)
 - add controller for fetch images of products from the product template
 - extend view of website product template
+
+## [18.0.1.2.0] - 2025-04-07 | Front-end - Practical Task (Download Product Images)
+- extend product.image module added field is_downloadable for security measures.

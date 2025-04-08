@@ -31,6 +31,12 @@ class ProductTemplate(models.Model):
         tracking=True)
     due_date = fields.Date(default=date.today())
     product_image_ids = fields.One2many(comodel_name='product.image', inverse_name='product_tmpl_id')
+    vendor_on_variants = fields.Boolean(
+        string = "Vendor on Variants",
+        default = False,
+        help = "If the Vendor on Variants field is set to True, the system shall assign the same vendor to all product variants as defined on the product template."
+    )
+    is_images_downloadable = fields.Boolean(string="Is Images Downloadable", default=True)
 
     def mark_as_available(self):
         """This function change or set the status of the book availability"""

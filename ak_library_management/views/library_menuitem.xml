@@ -64,7 +64,7 @@
         <!--change the name of menuitem product variants to product items and changing position-->
         <menuitem id="sale.menu_products"
                   parent="sale.product_menu_catalog"
-                  name="Product items"
+                  name="Product Variants"
                   sequence="35"/>
         <!--Update the position of the menu Customers, add below Configuration->Sales Teams-->
         <menuitem id="sale.res_partner_menu"

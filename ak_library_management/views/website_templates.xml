@@ -7,7 +7,13 @@
                 <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"
                        t-nocache="The csrf token must always be up to date."/>
                 <input type="hidden" class="product_template_id" name="product_template_id" t-att-value="product.id"/>
-                <button t-if="product.product_image_ids or product.image_1920" class="btn btn-primary" type="submit"><i class="fa fa-download"/> Download Product Images</button>
+                <t t-if="product.is_images_downloadable == True">
+                    <button t-if="product.product_image_ids or product.image_1920" class="btn btn-primary"
+                            type="submit">
+                        <i class="fa fa-download"/>
+                        Download Product Images
+                    </button>
+                </t>
             </form>
         </xpath>
     </template>
