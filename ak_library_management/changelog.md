@@ -64,3 +64,7 @@
 
 ## [18.0.1.2.0] - 2025-04-07 | Front-end - Practical Task (Download Product Images)
 - extend product.image module added field is_downloadable for security measures.
+
+## [18.0.1.2.1] - 2025-04-08 | ak_library_management module 
+- deleted unnecessary views in ak_library_management module
+- restructure the manifest file of ak_library_management module
