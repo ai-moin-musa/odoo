@@ -69,3 +69,7 @@
 ## [18.0.1.2.1] - 2025-04-08 | ak_library_management module 
 - deleted unnecessary views in ak_library_management module
 - restructure the manifest file of ak_library_management module
+
+## [18.0.1.2.2] - 2025-04-10 | borrowed books requirement
+- optimize the code of action confirm method in borrowed books wizard
+- add a docstring in custom methods

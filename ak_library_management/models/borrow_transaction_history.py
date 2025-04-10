@@ -73,14 +73,15 @@ class BorrowTransactionHistory(models.Model):
         This method used for customer cant borrow book without returning old books
         which is overdue of return date.
         """
-        borrow_transaction_history_id = self.search([('customer_id.id', "=", self.customer_id.id)])
-        for rec in borrow_transaction_history_id:
-            for book in rec.books:
-                if rec.borrow_end_date < date.today() and book.status == "borrowed":
-                    raise ValidationError(f"{rec.customer_id.name}"
-                                          f"with overdue books"
-                                          f"cannot borrow new ones until"
-                                          f"you return the overdue items.")
+        # borrow_transaction_history_id = self.search([('customer_id.id', "=", self.customer_id.id)])
+        # for rec in borrow_transaction_history_id:
+        #     for book in rec.books:
+        #         if rec.borrow_end_date < date.today() and book.status == "borrowed":
+        #             raise ValidationError(f"{rec.customer_id.name}"
+        #                                   f"with overdue books"
+        #                                   f"cannot borrow new ones until"
+        #                                   f"you return the overdue items.")
+        return True
 
     def action_book_returned_reminder_days(self):
         """
