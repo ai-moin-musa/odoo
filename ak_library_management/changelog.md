@@ -73,3 +73,6 @@
 ## [18.0.1.2.2] - 2025-04-10 | borrowed books requirement
 - optimize the code of action confirm method in borrowed books wizard
 - add a docstring in custom methods
+
+## [18.0.1.2.3] - 2025-04-15 | Dynamic Http Controller
+- updated dependency in manifest

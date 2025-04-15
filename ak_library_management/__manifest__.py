@@ -1,9 +1,8 @@
 # -*- coding: utf-8 -*-
-
 {
     'name': 'Library Management',
     'author': 'Moin Musa',
-    'version': '18.0.1.2.2',
+    'version': '18.0.1.2.3',
     'summary': 'Manages books,books category and members at library',
     'website': 'https://www.aktivsoftware.com',
     'description': """
@@ -12,9 +11,8 @@
     Manges member at library.
     """,
     'depends': [
-        'stock',
+        'sale_stock',
         'contacts',
-        'sale_management',
         'base_automation',
         'hr',
         'website_sale',
