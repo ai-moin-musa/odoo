@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="action_open_wizard_product_catalog" model="ir.actions.act_window">
+            <field name="name">Product Catalog Generator</field>
+            <field name="res_model">product.catalog</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="product_catalog_wizard_view_form"/>
+        </record>
+        <!-- add new menu under sales menu reporting -->
+        <menuitem id="menu_reporting_product_catalog_generator"
+                  name="Product Catalog Generator"
+                  parent="sale.menu_sale_report"
+                  action="ak_product_catalog_pdf.action_open_wizard_product_catalog"
+        />
+    </data>
+</odoo>

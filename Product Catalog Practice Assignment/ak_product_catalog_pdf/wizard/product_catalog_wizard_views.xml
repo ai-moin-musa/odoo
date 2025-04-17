@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="product_catalog_wizard_view_form" model="ir.ui.view">
+            <field name="name">product.catalog.wizard.view.form</field>
+            <field name="model">product.catalog</field>
+            <field name="arch" type="xml">
+                <form string="Product Catalog Generator">
+                    <group>
+                        <field name="catalog_style"/>
+                        <field name="page_break_after"/>
+                        <field name="product_ids" widget="Many2many_tags"/>
+                    </group>
+                    <footer>
+                        <button name="action_confirm" string="Continue" type="object"/>
+                        <button name="cancel" special="cancel" string="Cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>
