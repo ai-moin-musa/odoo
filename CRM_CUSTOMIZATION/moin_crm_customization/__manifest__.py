@@ -2,19 +2,16 @@
 {
     'name': 'CRM Customization',
     'author': 'Moin Musa',
-    'version': '18.0.0.0.0',
+    'version': '18.0.1.0.0',
     'summary': 'CRM Customization',
     'website': 'https://www.aktivsoftware.com',
     'description': """
     CRM Customization
     """,
     'depends': [
-        'sale_management',
-        'contacts',
         'mrp',
         'crm',
         'project',
-        'stock',
         'sale_project',
         'account',
     ],
@@ -27,6 +24,7 @@
         'views/mrp_production_views.xml',
         'views/stock_picking_views.xml',
         'views/project_project_views.xml',
+        'views/account_move_views.xml',
     ],
     'installable': True,
     'application': False,

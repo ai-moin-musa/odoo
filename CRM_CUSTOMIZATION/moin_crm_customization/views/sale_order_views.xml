@@ -8,7 +8,7 @@
             <field name="inherit_id" ref="sale.view_order_form"/>
             <field name="arch" type="xml">
                 <xpath expr="//group[@name='sale_header']//group[@name='partner_details']//field[@name='partner_id']" position="before">
-                    <field name="job_name" placeholder="Job Name"/>
+                    <field name="job_name" placeholder="Job Name" readonly="opportunity_id"/>
                 </xpath>
             </field>
         </record>

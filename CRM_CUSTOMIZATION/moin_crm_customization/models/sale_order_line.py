@@ -8,14 +8,6 @@ class SaleOrderLine(models.Model):
     """
     _inherit = 'sale.order.line'
 
-    def _prepare_procurement_values(self, group_id):
-        """
-        override and update the values dictionary with job name.
-        """
-        values = super()._prepare_procurement_values(group_id)
-        values['job_name'] = self.order_id.job_name
-        return values
-
     def _timesheet_create_project_prepare_values(self):
         """ inherit method for passing value from sale order to project"""
         values = super()._timesheet_create_project_prepare_values()
