@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 {
     'name': 'AK Product Catalog PDF',
     'author': 'Moin Musa',
@@ -17,10 +16,58 @@
         # views
         'views/sales_menus.xml',
 
+        # reports views
+        'report/product_catalog_report_views.xml',
+
         # wizards
         'wizard/product_catalog_wizard_views.xml',
+
     ],
     'installable': True,
     'application': False,
     'license': 'LGPL-3',
 }
+# -*- coding: utf-8 -*-
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

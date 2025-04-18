@@ -5,6 +5,7 @@
             <field name="name">Product Catalog Generator</field>
             <field name="res_model">product.catalog</field>
             <field name="view_mode">form</field>
+            <field name="target">new</field>
             <field name="view_id" ref="product_catalog_wizard_view_form"/>
         </record>
         <!-- add new menu under sales menu reporting -->

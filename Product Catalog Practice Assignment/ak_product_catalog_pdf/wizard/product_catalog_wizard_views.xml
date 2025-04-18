@@ -12,7 +12,7 @@
                         <field name="product_ids" widget="Many2many_tags"/>
                     </group>
                     <footer>
-                        <button name="action_confirm" string="Continue" type="object"/>
+                        <button name="action_print_pdf" string="Continue" type="object"/>
                         <button name="cancel" special="cancel" string="Cancel"/>
                     </footer>
                 </form>
