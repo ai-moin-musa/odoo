@@ -13,61 +13,17 @@
         # security files
         'security/ir.model.access.csv',
 
+        # wizards
+        'wizard/product_catalog_wizard_views.xml',
+
         # views
         'views/sales_menus.xml',
 
         # reports views
         'report/product_catalog_report_views.xml',
-
-        # wizards
-        'wizard/product_catalog_wizard_views.xml',
-
+        'report/ir_report_actions.xml'
     ],
     'installable': True,
     'application': False,
     'license': 'LGPL-3',
 }
-# -*- coding: utf-8 -*-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

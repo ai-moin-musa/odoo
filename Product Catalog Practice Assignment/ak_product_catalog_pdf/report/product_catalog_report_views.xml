@@ -1,42 +1,131 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
+    <!-- custom external layout for product catalog -->
     <template id="product_catalog_style_one_external_layout">
         <div class="header">
-            <h6 class="text-center font-weight-bold">Generated Product Catalog</h6>
+            <h5 class="text-center font-weight-bold">Generated Product Catalog</h5>
         </div>
         <div class="article">
             <t t-out="0"/>
         </div>
     </template>
+
+    <!-- product catalog template for style one -->
     <template id="product_catalog_style_one">
         <t t-call="web.html_container">
-            <t t-foreach="docs" t-as="o">
-                <t t-call="ak_product_catalog_pdf.product_catalog_style_one_external_layout">
+            <t t-call="ak_product_catalog_pdf.product_catalog_style_one_external_layout">
+                <t t-foreach="docs" t-as="o">
+                    <t t-set="counter" t-value="0"/>
                     <t t-foreach="docs.product_ids" t-as="product_id">
+                        <t t-set="counter" t-value="counter+1"/>
                         <div class="row pb-2 mb-2" style="border-bottom: 2px solid purple">
                             <div class="col-3">
-                               <img t-if="product_id.image_128" width="200px" height="200px" t-att-src="image_data_uri(product_id.image_128)"/>
+                                <img t-if="product_id.image_128" width="200px" height="200px"
+                                     t-att-src="image_data_uri(product_id.image_128)"/>
                             </div>
                             <div class="col-9">
-                                <h4 class="font-weight-bold text-left"><t t-out="product_id.name"/></h4>
-                                <span class="text-center px-4 py-1" style="background-color: gray;"><t t-out="product_id.default_code"/></span>
+                                <h4 class="font-weight-bold text-left">
+                                    <t t-out="product_id.name"/>
+                                </h4>
+                                <div class="col-3 text-center px-2 my-1 font-weight-bold"
+                                     style="background-color: LightGray;">
+                                    <t t-out="product_id.default_code"/>
+                                </div>
+                                <div class="col-3 px-2 my-1" style="background-color: LightGray;">
+                                    <strong>Price :</strong>
+                                    <t t-out="product_id.lst_price"
+                                       t-options="{'widget': 'monetary', 'display_currency': product_id.currency_id}"/>
+                                </div>
+                                <div class="my-1">
+                                    <t t-out="product_id.description"/>
+                                </div>
                             </div>
                         </div>
+                        <t t-if="counter % docs.page_break_after == 0">
+                            <div style="page-break-after: always;"></div>
+                        </t>
+
                     </t>
                 </t>
             </t>
         </t>
     </template>
 
-    <record id="action_report_product_catalog_style_one" model="ir.actions.report">
-        <field name="name">Product Catalog Style One</field>
-        <field name="model">product.catalog</field>
-        <field name="report_type">qweb-pdf</field>
-        <field name="report_name">ak_product_catalog_pdf.product_catalog_style_one</field>
-        <field name="report_file">ak_product_catalog_pdf.product_catalog_style_one</field>
-        <field name="print_report_name">'Product-Catalog-Style-One'</field>
-        <field name="binding_model_id" ref="model_product_catalog"/>
-        <field name="binding_type">report</field>
-    </record>
+    <!-- product catalog template for style two -->
+    <template id="product_catalog_style_two">
+        <t t-call="web.html_container">
+            <div class="article">
+                <t t-foreach="docs" t-as="doc">
+                    <t t-set="len_of_products" t-value="len(docs.product_ids)"/>
+                    <t t-set="i" t-value="0"/>
+                    <t t-if="i &lt; len_of_products" t-foreach="len_of_products" t-as="counter">
+                        <t t-set="product_id_one" t-value="doc.product_ids[i]"/>
+                        <t t-if="i+1 &lt; len_of_products" t-set="product_id_two" t-value="doc.product_ids[i+1]"/>
+                        <div class="row" style="margin-bottom: 60px;">
+                            <div class="col-6 px-4">
+                                <div style="border: 2px dashed purple;">
+                                    <div class="col">
+                                        <h4 class="font-weight-bold text-center">
+                                            <t t-out="product_id_one.name"/>
+                                        </h4>
+                                    </div>
+                                    <div class="col text-center mb-2">
+                                        <img t-if="product_id_one.image_128" width="200px" height="150px"
+                                             t-att-src="image_data_uri(product_id_one.image_128)"/>
+                                    </div>
+                                    <div class="col text-center mx-1 mb-1" style="background-color: Yellow;">
+                                        <t t-out="product_id_one.default_code"/>
+                                    </div>
+                                    <div class="col d-flex justify-content-center mx-1 mb-1"
+                                         style="background-color: Yellow; height:80px">
+                                        <div class="d-flex justify-content-center align-items-center">
+                                            <h4 class="mb-0">
+                                                <t t-out="product_id_one.lst_price"
+                                                   t-options="{'widget': 'monetary', 'display_currency': product_id_one.currency_id}"/>
+                                            </h4>
+                                        </div>
+                                    </div>
+                                    <div class="mx-1" style="border: 1px solid purple"/>
+                                    <div class="mx-1" style="height: 280px">
+                                        <t t-out="product_id_one.description_sale"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div t-if="i+1 &lt; len_of_products" class="col-6 px-4">
+                                <div style="border: 2px dashed purple;">
+                                    <div class="col">
+                                        <h4 class="font-weight-bold text-center">
+                                            <t t-out="product_id_two.name"/>
+                                        </h4>
+                                    </div>
+                                    <div class="col text-center mb-2">
+                                        <img t-if="product_id_two.image_128" width="200px" height="150px"
+                                             t-att-src="image_data_uri(product_id_two.image_128)"/>
+                                    </div>
+                                    <div class="col text-center mx-1 mb-1" style="background-color: Yellow;">
+                                        <t t-out="product_id_two.default_code"/>
+                                    </div>
+                                    <div class="col d-flex justify-content-center mx-1 mb-1"
+                                         style="background-color: Yellow; height:80px">
+                                        <div class="d-flex justify-content-center align-items-center">
+                                            <h4 class="mb-0">
+                                                <t t-out="product_id_two.lst_price"
+                                                   t-options="{'widget': 'monetary', 'display_currency': product_id_two.currency_id}"/>
+                                            </h4>
+                                        </div>
+                                    </div>
+                                    <div class="mx-1" style="border: 1px solid purple"/>
+                                    <div class="mx-1" style="height: 280px;">
+                                        <t t-out="product_id_two.description_sale"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <t t-set="i" t-value="i+2"/>
+                    </t>
+                </t>
+            </div>
+        </t>
+    </template>
 
 </odoo>

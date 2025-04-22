@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
     <data>
+        <!-- wizard form for generating the products catalog -->
         <record id="product_catalog_wizard_view_form" model="ir.ui.view">
             <field name="name">product.catalog.wizard.view.form</field>
             <field name="model">product.catalog</field>
@@ -12,7 +13,7 @@
                         <field name="product_ids" widget="Many2many_tags"/>
                     </group>
                     <footer>
-                        <button name="action_print_pdf" string="Continue" type="object"/>
+                        <button name="action_print_pdf" data-hotkey="1" string="Continue" type="object"/>
                         <button name="cancel" special="cancel" string="Cancel"/>
                     </footer>
                 </form>

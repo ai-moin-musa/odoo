@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
     <data>
+        <!-- action for product catalog wizard form -->
         <record id="action_open_wizard_product_catalog" model="ir.actions.act_window">
             <field name="name">Product Catalog Generator</field>
             <field name="res_model">product.catalog</field>
@@ -13,6 +14,7 @@
                   name="Product Catalog Generator"
                   parent="sale.menu_sale_report"
                   action="ak_product_catalog_pdf.action_open_wizard_product_catalog"
+                  sequence="50"
         />
     </data>
 </odoo>
