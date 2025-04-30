@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- adding new menu sales manager approvals at Sales->Configuration -->
+        <menuitem id="sales_manager_approvals_menu"
+                  parent="sale.menu_sale_config"
+                  name="Sales Manager Approvals"
+                  action="sales_manager_approval_view_action"
+                  sequence="25"/>
+        <menuitem id="sales_order_approvals_menu"
+                  parent="sale.sale_menu_root"
+                  name="Approvals"
+        />
+        <menuitem id="pending_sale_orders_menu"
+                  parent="sales_order_approvals_menu"
+                  name="Pending Sales Orders"
+                  action="pending_sales_orders_action"
+        />
+    </data>
+</odoo>

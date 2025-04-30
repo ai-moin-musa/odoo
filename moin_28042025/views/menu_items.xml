@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <menuitem id="product_review_main"
+                  name="Product Review Management"/>
+        <!--this is sub menu for product review-->
+        <menuitem id="product_review"
+                  name="Product Review"
+                  parent="product_review_main"
+                  sequence="1"
+                  action="product_review_view_action"/>
+    </data>
+</odoo>

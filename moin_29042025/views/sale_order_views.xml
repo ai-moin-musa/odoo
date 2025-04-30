@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="sale_order_form_inherited" model="ir.ui.view">
+            <field name="name">sale.order.form.inherited</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//header//button[@name='action_confirm'][2]" position="attributes">
+                    <attribute name="invisible">state != 'draft' or approval_required</attribute>
+                </xpath>
+                <xpath expr="//header//button[@name='action_cancel']" position="attributes">
+                    <attribute name="invisible">state not in ['draft', 'sent', 'sale'] or not id or locked or approval_required</attribute>
+                </xpath>
+                <xpath expr="//header" >
+                    <button name="action_send_for_approval" type="object" string="Send for approval"
+                            invisible="not (approval_required)"/>
+                    <button name="action_approve" type="object" string="Approve" groups="sales_team.group_sale_manager"
+                            invisible="not (approval_required)"/>
+                </xpath>
+            </field>
+        </record>
+
+
+        <record id="view_sales_order_filter" model="ir.ui.view">
+            <field name="name">sale.order.list.select</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_sales_order_filter"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='name']" position="before">
+                    <filter string="Pending Approval Sales Orders" name="pending_approvals" domain="[('state', '=', 'pending_approval')]"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="pending_sales_orders_action" model="ir.actions.act_window">
+            <field name="name">Pending Sales Orders</field>
+            <field name="res_model">sale.order</field>
+            <field name="view_mode">list</field>
+            <field name="domain">[]</field>
+            <field name="context">{'search_default_pending_approvals': 1}</field>
+        </record>
+    </data>
+</odoo>

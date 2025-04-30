@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!--this form view for product review -->
+        <record id="product_review_form_view" model="ir.ui.view">
+            <field name="name">product.review.form.view</field>
+            <field name="model">product.review</field>
+            <field name="arch" type="xml">
+                <form string="Product Review">
+                    <sheet>
+                        <group>
+                            <field name="product_id"/>
+                            <field name="user_id"/>
+                            <field name="rating"/>
+                            <field name="description"/>
+                            <field name="create_date"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!--this list view for product review-->
+        <record id="product_review_list_view" model="ir.ui.view">
+            <field name="name">product.review.list.view</field>
+            <field name="model">product.review</field>
+            <field name="arch" type="xml">
+                <list string="Product Review">
+                    <field name='product_id'/>
+                    <field name='user_id'/>
+                    <field name="rating"/>
+                    <field name="description"/>
+                    <field name="create_date"/>
+                </list>
+            </field>
+        </record>
+
+        <!--this action to product review view-->
+        <record id="product_review_view_action" model="ir.actions.act_window">
+            <field name="name">Product Review</field>
+            <field name="res_model">product.review</field>
+            <field name="view_mode">list,form</field>
+            <field name="view_id" ref="product_review_list_view"/>
+            <field name="help" type="html">
+                <p>Product Reviews</p>
+            </field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--inherited website_sale product template and extend it-->
+    <template id="product_details_page" inherit_id="website_sale.product">
+        <xpath expr="//div[@id = 'product_detail_main']" position="after">
+            <div class="card-body" style="border-top: 2px solid purple; border-bottom: 2px solid purple;">
+               <t t-if="website.is_public_user()">
+                   <div class="d-flex justify-content-center align-items-center">
+                       <p>Please <a href="/web/login">log in</a> to submit the review.</p>
+                   </div>
+               </t>
+                <t t-else="">
+                    <form id="review_form" method="POST" action="/save_review" class="py-2">
+                        <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"
+                               t-nocache="The csrf token must always be up to date."/>
+                        <input type="hidden" name="product_id" t-att-value="product.id"/>
+                        <input type="hidden" name="user_id" t-att-value="request.env.user.id"/>
+                        <div class="form-group d-flex flex-row mb-2">
+                            <div class="mx-2">
+                                <input type="radio" name="rating" id="one_star" class="form-check-input" value="1"
+                                       required="True"/>
+                                <label for="one_star" class="form-label">1
+                                    <i class="fa fa-star"/>
+                                </label>
+                            </div>
+                            <div class="mx-2">
+                                <input type="radio" name="rating" id="two_star" class="form-check-input" value="2"
+                                       required="True"/>
+                                <label for="two_star" class="form-label">2
+                                    <i class="fa fa-star"/>
+                                </label>
+                            </div>
+                            <div class="mx-2">
+                                <input type="radio" name="rating" id="three_star" class="form-check-input" value="3"
+                                       required="True"/>
+                                <label for="three_star" class="form-label">3
+                                    <i class="fa fa-star"/>
+                                </label>
+                            </div>
+                            <div class="mx-2">
+                                <input type="radio" name="rating" id="four_star" class="form-check-input" value="4"
+                                       required="True"/>
+                                <label for="four_star" class="form-label">4
+                                    <i class="fa fa-star"/>
+                                </label>
+                            </div>
+                            <div class="mx-2">
+                                <input type="radio" name="rating" id="five_star" class="form-check-input" value="5"
+                                       required="True"/>
+                                <label for="five_star" class="form-label">5
+                                    <i class="fa fa-star"/>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group col-6 mb-2">
+                            <label for="review" class="form-label">Write your review:</label>
+                            <input type="textarea" class="form-control" name="review" id="inputMessage"
+                                   required="True"/>
+                        </div>
+                        <div class="form-group col-6 mb-2">
+                            <button type="submit" class="btn btn-primary">
+                                Submit Review
+                            </button>
+                        </div>
+                    </form>
+                </t>
+            </div>
+            <div class="card-body" style="border-top: 2px solid purple; border-bottom: 2px solid purple;">
+                <div class="oe_chatter">
+                    <t t-set="reviews" t-value="request.env['product.review'].sudo().search([('product_id','=',product.id)])"/>
+                    <h6>Previous Reviews:</h6>
+                    <t t-foreach="reviews" t-as="review">
+                        <div class="container">
+                            <p><t t-out="review.user_id.name"/> - <t t-out="review.rating"/><i class="fa fa-star"/></p>
+                            <p>"<t t-out="review.description"/>"</p>
+                        </div>
+                    </t>
+                </div>
+            </div>
+        </xpath>
+    </template>
+</odoo>

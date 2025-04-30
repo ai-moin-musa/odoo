@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!--inherit res config settings view form and add sales_manager_approval_ids many2many field-->
+        <record id="res_config_settings_view_form_inherited" model="ir.ui.view">
+            <field name="name">res.config.settings.view.form.inherited</field>
+            <field name="model">res.config.settings</field>
+            <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//form//app[@data-string='General Settings']//div[@id='invite_users']" position="inside">
+                    <div id="approvals">
+                        <block title="Sales Manager Approval" name="sales_manager_approval_setting_container">
+                            <setting id="set_sale_manager_approval_setting">
+                                <field name="sales_manager_approval_ids"/>
+                            </setting>
+                        </block>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

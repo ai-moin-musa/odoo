@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+moin_28042025.access_product_review,access_product_review,moin_28042025.model_product_review,base.group_user,1,1,1,1

@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+moin_29042025.access_sales_manager_approval,access_sales_manager_approval,moin_29042025.model_sales_manager_approval,base.group_user,1,1,1,1
