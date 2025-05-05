@@ -14,11 +14,23 @@ publicWidget.registry.ContactFormPage = publicWidget.Widget.extend({
 
         var email = $('input[name="email"]').val();
         var phone = $('input[name="phone"]').val();
+        var email = $('#email').val();
+        var contact_id = $('#contact_id').val();
+        var address = $('#address').val();
+        var name = $('#name').val();
+        var website = $('#website').val();
 
         var emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
         var phoneRegex = /^\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{4}$/;
 
         var errorMessage = '';
+
+        if (name == "") {
+            errorMessage += 'Please enter a valid Name.<br>';
+        }
+        if (phone == "") {
+            errorMessage += 'Please enter a valid phone number.<br>';
+        }
 
         if (!emailRegex.test(email)) {
             errorMessage += 'Please enter a valid Email Address.<br>';
@@ -31,16 +43,6 @@ publicWidget.registry.ContactFormPage = publicWidget.Widget.extend({
             $('#error_message').html(errorMessage).fadeIn();
             return false;
         } else {
-            $('#error_message').fadeOut();
-            $('#contact_form input').prop('readonly', true);
-            $('#edit_button').show();
-            $('#save_button').hide();
-            var email = $('#email').val();
-            var contact_id = $('#contact_id').val();
-            var address = $('#address').val();
-            var name = $('#name').val();
-            var website = $('#website').val();
-
             rpc('/save_contact',{
                 contact_id: contact_id,
                 email: email,
@@ -51,10 +53,17 @@ publicWidget.registry.ContactFormPage = publicWidget.Widget.extend({
             }).then(function (result){
                 if (result.status === 'success'){
                     alert('Saved successfully');
+                    $('#error_message').fadeOut();
+                    $('#contact_form input').prop('readonly', true);
+                    $('#edit_button').show();
+                    $('#save_button').hide();
+                    return false;
                 } else{
                     $('#error_message').html(result.message).fadeIn();
                 }
             });
+
+
 
         }
     },

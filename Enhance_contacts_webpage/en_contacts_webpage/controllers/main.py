@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from odoo import http
 from odoo.http import request
+from odoo.exceptions import ValidationError
 
 
 class CustomController(http.Controller):
@@ -35,6 +36,10 @@ class CustomController(http.Controller):
         """
         try:
             partner = request.env['res.partner'].sudo().browse(int(contact_id))
+            if request.env['res.partner'].search(
+                [('id', '!=',contact_id), ('email', '=', email)]):
+                raise ValidationError('this email already taken. please take other email address.')
+
             if partner.exists():
                 partner.write({
                     'email': email,
