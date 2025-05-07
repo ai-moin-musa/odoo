@@ -18,13 +18,12 @@ class SaleOrder(models.Model):
         vals['job_name'] = self.job_name
         return vals
 
-    @api.depends('opportunity_id','opportunity_id.name')
+    @api.depends('opportunity_id', 'opportunity_id.name')
     def _compute_job_name_from_opportunity_crm(self):
         """
         this method used for whenever changes the opportunity id or opportunity's name
         so store the job name same as opportunity name.
         """
         for rec in self:
-            rec.job_name = rec.job_name
             if rec.opportunity_id:
                 rec.job_name = rec.opportunity_id.name

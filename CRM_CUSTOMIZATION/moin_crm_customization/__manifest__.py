@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
+# Part of Odoo. See LICENSE file for full copyright and licensing details.
 {
     'name': 'CRM Customization',
     'author': 'Moin Musa',
-    'version': '18.0.1.0.0',
+    'version': '18.0.1.0.1',
     'summary': 'CRM Customization',
     'website': 'https://www.aktivsoftware.com',
     'description': """
